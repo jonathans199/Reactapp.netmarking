@@ -1,0 +1,27 @@
+a.bronze_user i {
+  color: #f1f3f6 !important;
+}
+
+a.silver_user i {
+  color: #49ACE8 !important;
+}
+
+a.gold_user i {
+  color: #26405e !important; 
+}
+
+a.ruby_user i {
+  color: #6568af !important;
+}
+
+a.sapphire_user i {
+  color: #4169e1 !important;
+}
+
+a.emerald_user i {
+  color: #287233 !important;
+}
+
+a.diamond_user i {
+  color: #dcedec !important;
+}

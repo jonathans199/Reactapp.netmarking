@@ -1,0 +1,20 @@
+.user-data {
+  font-size: 15px;
+  text-align: left;
+  color: black
+}
+@media (min-width:768px) {
+  .custom-logo {
+    /* width: 100%;
+    width: 165px;
+    height: 80px !important; */
+    width: 193px;
+    height: 70px !important;
+  }
+  .user-data {
+    font-size: 15px;
+    text-align: right;
+    color: black
+  }
+}
+

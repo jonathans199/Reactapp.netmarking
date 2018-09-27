@@ -1,0 +1,181 @@
+@charset "UTF-8";
+
+.navbar-brand {
+    color: #fff
+}
+
+.rating{
+    color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:24px;
+    margin-bottom: 10px
+}
+.box-shadow-5 {
+    -webkit-box-shadow: 0 27px 24px 0 rgba(62,57,107,.36);
+    box-shadow: 0 27px 24px 0 rgba(62,57,107,.36);
+}
+
+.btn-danger {
+    border-color: #FF394F!important;
+    background-color: #FF4961!important;
+    color: #FFF;
+}
+.btn-min-width {
+    min-width: 8.5rem;
+}
+
+
+.card {
+    margin-bottom: 1.875rem;
+    border: none;
+    -webkit-box-shadow: 0 1px 15px 1px rgba(62,57,107,.07);
+    box-shadow: 0 1px 15px 1px rgba(62,57,107,.07);
+}
+
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    border-radius: .35rem;
+}
+.card, .card-deck {
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+}
+.card, .card-footer, .card-header {
+    background-color: #FFF;
+}
+
+.dropdown-menu>.active>a,
+.dropdown-menu>.active>a:focus,
+.dropdown-menu>.active>a:hover,
+.dropdown-menu>li>a:focus,
+.dropdown-menu>li>a:hover,
+.mega-dropdown-menu li .col-menu ul.menu-col li a:hover,
+.nav>li>a.btn-buy:hover,
+.navbar-nav .open>a,
+.navbar-nav .open>a:focus,
+.navbar-nav .open>a:hover,
+.navbar-nav>.open>a,
+.navbar-nav>.open>a:focus,
+.navbar-nav>.open>a:hover,
+.navbar-top-links>li.log_out a {
+    color: #fff;
+    background-color: #2C303B
+}
+
+.navbar-nav .open>a,
+.navbar-nav .open>a:focus,
+.navbar-nav .open>a:hover {
+    border-color: #26405e
+}
+
+.nav>li>a.btn-buy,
+.nav>li>a.btn-buy:hover {
+    border: 2px solid #26405e
+}
+
+.navbar-header {
+    background-color: #2C303B
+}
+
+.nav>li>a.btn-buy {
+    color: #26405e
+}
+
+.navbar-nav li a.menu-toggle:active,
+.navbar-nav li a.menu-toggle:focus,
+.navbar-nav li a.menu-toggle:hover,
+.navbar-nav li a.search-trigger:active,
+.navbar-nav li a.search-trigger:focus,
+.navbar-nav li a.search-trigger:hover,
+.navbar-top-links li a.dropdown-toggle:active,
+.navbar-top-links li a.dropdown-toggle:focus,
+.navbar-top-links li a.dropdown-toggle:hover {
+    color: #2c3136
+}
+
+.navbar-nav li a#fullscreen,
+.navbar-nav li a#menu-toggle,
+.navbar-nav li a.menu-toggle,
+.navbar-nav li a.search-trigger,
+.navbar-top-links li a.dropdown-toggle {
+    color: #26405e
+}
+
+.navbar-top-links>li.log_out a:active,
+.navbar-top-links>li.log_out a:focus,
+.navbar-top-links>li.log_out a:hover {
+    color: #fff;
+    background-color: #6a6f74
+}
+
+.back-top,
+.sidebar {
+    background-color: #2C303B
+}
+
+.sidebar .nav-heading {
+    color: #fff
+}
+
+.sidebar ul li a {
+    color: #DCDCDC;
+    padding: 13px 15px;
+}
+
+.back-top {
+    border: 1px solid #2c3136
+}
+
+.back-top:hover {
+    color: #fff;
+    background-color: #6a6f74;
+    border: 1px solid #6a6f74
+}
+/* CSS By IR */
+#path > ol >li> a{
+    color: #1E9FF2;
+}
+#path > ol >li:last-child{
+    color: #6B6F82;
+}
+
+#title > h1{
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #464855;
+}
+.flexBox{
+    display: flex;
+    flex-direction: row;
+    margin-left: 0px !important;
+}
+
+.flexBox div:nth-child(1){
+    margin-right: 24px;
+    border-right: 1px solid #E4E5EC;
+    padding-right: 24px;
+    font-size: 1.51rem;
+   
+
+}
+.flexBox div:nth-child(1){
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.45;
+}
+
+/* END CSS IR */

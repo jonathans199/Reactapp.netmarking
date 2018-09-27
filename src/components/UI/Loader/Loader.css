@@ -1,0 +1,8 @@
+.loader {
+  margin-top: 100px;
+}
+
+img#config_data_loader {
+  width: 10%;
+  height: auto;
+}
