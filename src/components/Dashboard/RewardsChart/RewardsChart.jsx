@@ -18,7 +18,7 @@ export default class RewardsChart extends Component {
   }
 
   getData() {
-    fetch( config.defaultURL + "/v1/rewards",
+    fetch( config.defaultURL + "/rewards",
       {
         method: "GET",
         headers: {

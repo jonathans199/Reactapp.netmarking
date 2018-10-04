@@ -1,8 +1,8 @@
-const defaultURL    = "http://localhost:3001/api";
-const defaultDomain = "http://localhost:3000";
+let defaultURL    = "http://localhost:3001/api/v1/client"
+let defaultDomain = "http://localhost:3000"
 
-// const defaultURL = "http://api.tradingwaves.co/api"
-// const defaultDomain = "http://app.tradingwaves.co"
+  // defaultURL = "https://api.netmarketcap.com/api/v1/client"
+  // defaultDomain = "https://app.netmarketcap.com"
 
 module.exports = {
   defaultURL: defaultURL,

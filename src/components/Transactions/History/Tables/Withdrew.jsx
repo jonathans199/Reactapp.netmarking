@@ -26,7 +26,7 @@ class Withdrew extends Component {
   }
 
   getData() {
-    fetch(config.defaultURL + "/v1/stats/withdrew", {
+    fetch(config.defaultURL + "/stats/withdrew", {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("auth_token")

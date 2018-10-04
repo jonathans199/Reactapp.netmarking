@@ -29,7 +29,7 @@ class TotalBinary extends Component {
   }
 
   getBinaryTotal() {
-    fetch(config.defaultURL + "/v1/stats/totals/binary",
+    fetch(config.defaultURL + "/stats/totals/binary",
       {
         method: "GET",
         headers: {

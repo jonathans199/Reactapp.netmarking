@@ -20,7 +20,7 @@ class BotProPending extends Component {
   }
 
   verifyKeys() {
-    fetch(config.defaultURL + "/v1/botpro/verify_keys", {
+    fetch(config.defaultURL + "/botpro/verify_keys", {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("auth_token")
@@ -47,7 +47,7 @@ class BotProPending extends Component {
   }
 
   createUserKeys() {
-    fetch(config.defaultURL + "/v1/botpro/create_keys/", {
+    fetch(config.defaultURL + "/botpro/create_keys/", {
       method: "POST",
       headers: {
         "content-type": "application/json",

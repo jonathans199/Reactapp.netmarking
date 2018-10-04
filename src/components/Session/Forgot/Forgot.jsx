@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import SweetAlert from "react-bootstrap-sweetalert";
-import createFragment from "react-addons-create-fragment";
 import styled from "styled-components";
-import topLogo from './../../../assets/img/Logo-tradingWaves_white.png'
+import topLogo from './../../../assets/img/logo.png'
+import { ToastContainer, toast } from 'react-toastify'
+import { Link } from "react-router-dom";
 
 import config from "../../../services/config";
 
@@ -25,7 +25,7 @@ class Forgot extends Component {
 
   recoverPassword() {
     this.setState({ loading: true })
-    fetch(config.defaultURL + "/v1/users/pass_recovery", {
+    fetch(config.defaultURL + "/users/1/pass_recovery", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -37,18 +37,17 @@ class Forgot extends Component {
     }).then(response =>
       response.json().then(data => {
         if (response.ok) {
-          this.setState({
-            show: true,
-            modalTitle: "A new password has been sent to your email",
-            historyPush: "/login",
-            loading: false
+          toast.success('New password has been sent to your email', {
+            position: toast.POSITION.TOP_RIGHT,
+            className:"text-center"
           })
         } else {
-          this.setState({
-            errors: createFragment(data),
-            loading: false
+          toast.error('Invalid Username', {
+            position: toast.POSITION.TOP_RIGHT,
+            className:"text-center"
           })
         }
+        this.setState({ loading: false })
       })
     );
   }
@@ -73,31 +72,29 @@ class Forgot extends Component {
     let button = this.state.loading ? (
       <button
         type="button"
-        className="btn btn-primary btn-block"
+        className="btn button__login btn-block"
         disabled
       >
-        Get new password <i className="fa fa-spinner fa-spin" />
+        Recover Password <i className="fa fa-spinner fa-spin" />
       </button>
     ) : (
       <button
         type="button"
-        className="btn btn-primary btn-block"
+        className="btn button__login btn-block"
         onClick={() => this.recoverPassword()}
       >
-        Get new password
+        Recover Password
       </button>
     )
     return (
       <div className="login-wrapper custom-back">
+        <ToastContainer />
         <div className="container-center">
           <div className="panel custom-panel">
             <div className="panel-heading">
-
-                <Header>
-                  <img src={topLogo} width="100%" />
-
-                </Header>
-
+              <Header>
+                <img src={topLogo} width="100%" />
+              </Header>
             </div>
             <div className="panel-body">
               {errors.length > 0 ? (
@@ -110,39 +107,27 @@ class Forgot extends Component {
                 </div>
               ) : null}
               <form>
-                <p className="text-center text-white">
-                  Writte down your password and you will get a new password
-                </p>
                 <div className="form-group">
-                  
-                    <input
-                      id="username"
-                      name="username"
-                      placeholder="Please enter your username"
-                      type="text"
-                      onChange={value => this.handleChange(value)}
-                    />
+                  <input
+                    id="username"
+                    name="username"
+                    placeholder="Please enter your username"
+                    type="text"
+                    onChange={value => this.handleChange(value)}
+                  />
                 </div>
                 <div>
                   {button}
+                  <br/>
+                  <p>
+                    <Link to="/login" className="text-white">Sign In</Link>
+                  </p>
                 </div>
               </form>
             </div>
           </div>
-          <div className="text-center text-white">
-            <a href="#/login" className="text-white">Back to login</a>
-          </div>
+
         </div>
-        <SweetAlert
-          custom
-          showCancel={false}
-          showConfirm={true}
-          confirmBtnText="OK"
-          confirmBtnBsStyle="primary"
-          show={this.state.show}
-          title={this.state.modalTitle}
-          onConfirm={() => this.closeSweet()}
-        />
       </div>
     );
   }

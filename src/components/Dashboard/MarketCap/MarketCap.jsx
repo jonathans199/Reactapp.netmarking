@@ -13,7 +13,7 @@ export default class MarketCap extends React.Component {
   }
 
   componentDidMount(){
-    fetch(config.defaultURL + "/v1/market_cap",
+    fetch(config.defaultURL + "/market_cap",
       {
         method: "GET",
         headers: {
@@ -81,7 +81,7 @@ export default class MarketCap extends React.Component {
         <div className="panel-heading">
           <div className="panel-title">
             <i className="fa fa-btc"></i>
-            <h4>{lang.market}ivan</h4>
+            <h4>{lang.market}</h4>
           </div>
         </div>
         <div className="panel-body">

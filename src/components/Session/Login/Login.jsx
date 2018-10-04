@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import topLogo from './../../../assets/img/Logo-tradingWaves_white.png'
+import topLogo from './../../../assets/img/logo.png'
 import config from "../../../services/config"
+import { ToastContainer, toast } from 'react-toastify'
 
 import './custom.css'
 
@@ -34,7 +35,7 @@ class Login extends Component {
     if (auth && user.active) {
       this.props.history.push("/dashboard");
     } else if (auth) {
-      this.props.history.push("/market/investment");
+      this.props.history.push("/packages");
     }
   }
 
@@ -42,7 +43,7 @@ class Login extends Component {
     this.setState({
       loading: true
     })
-    fetch(config.defaultURL + "/v1/signin", {
+    fetch(config.defaultURL + "/sessions", {
       method: "POST",
       headers: {
         "content-type": "application/json"
@@ -67,12 +68,15 @@ class Login extends Component {
               if (user.active) {
                 this.props.history.push("/dashboard?m=1");
               } else {
-                this.props.history.push("/market/investment?m=1");
+                this.props.history.push("/packages?m=1");
               }
             });
         } else if (response.status === 401) {
+          toast.error(data.error, {
+            position: toast.POSITION.TOP_RIGHT,
+            className:"text-center"
+          })
           this.setState({
-            errors: data.error,
             loading: false
           })
         }
@@ -86,12 +90,12 @@ class Login extends Component {
 
   render() {
     let button = this.state.loading ? (
-      <a className="btn btn-primary btn-block" disabled>
+      <a className="btn button__login  btn-block" disabled>
         Log In <i className="fa fa-spinner fa-spin" />
       </a>
     ) : (
       <a
-        className="btn btn-primary btn-block"
+        className="btn button__login  btn-block"
         onClick={() => this.submitForm()}
       >
         Log In
@@ -111,6 +115,7 @@ class Login extends Component {
       margin-right: auto;
     `;
     return <div className="login-wrapper custom-back">
+        <ToastContainer />
         <div className="container-center">
           <div className="panel custom-panel">
             <div className="panel-heading text-center">
@@ -119,14 +124,14 @@ class Login extends Component {
               </Header>
             </div>
             <div className="panel-body">
-              <form id="loginForm" noValidate>
+              <form id="loginForm"  noValidate>
                 {errors}
                 <div className="form-group">
-                    <input id="username" type="text"  name="username" placeholder="Username" onChange={value => this.handleChange(value)} />
+                    <input autoComplete="nope"  id="username" type="text"  name="username" placeholder="Username" onChange={value => this.handleChange(value)} />
                 </div>
                 <div className="form-group">
 
-                    <input id="pass" type="password"  name="password" placeholder="Password" onChange={value => this.handleChange(value)} />
+                    <input autoComplete="nope" id="pass" type="password"  name="password" placeholder="Password" onChange={value => this.handleChange(value)} />
                 </div>
                 <div>
                   <div className="checkbox checkbox-btk text-white">
@@ -134,15 +139,16 @@ class Login extends Component {
                     <label htmlFor="checkbox3">Remember me</label>
                   </div>
                   {button}
+                  <br/>
+                  <p>
+                    <Link to="/forgot" className="text-white">Forgot Password</Link>
+                  </p>
+                  <p>
+                    <Link to="/register" className="text-white"> Register</Link>
+                  </p>
                 </div>
               </form>
             </div>
-          </div>
-          <div className="text-center text-white">
-            Don't have an account yet? <Link to="/register" className="text-white"> Register now! </Link>
-            <br />
-            <br />
-            <Link to="/forgot" className="text-white">I forgot my password</Link>
           </div>
         </div>
       </div>;

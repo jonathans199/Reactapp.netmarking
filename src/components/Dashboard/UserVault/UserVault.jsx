@@ -17,7 +17,7 @@ export default class UserVault extends React.Component {
   }
 
   getData(){
-    fetch(config.defaultURL + "/v1/vaults/user",
+    fetch(config.defaultURL + "/vaults/user",
       {
         method: "GET",
         headers: {

@@ -19,7 +19,7 @@ export default class ReferalLinks extends Component {
   }
 
   getUser() {
-    fetch(config.defaultURL + "/v1/users/show/", {
+    fetch(config.defaultURL + "/users/show/", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -38,7 +38,7 @@ export default class ReferalLinks extends Component {
 
   handleChange(event) {
     let right =  event.target.value
-    fetch(config.defaultURL + "/v1/users/update/", {
+    fetch(config.defaultURL + "/users/update/", {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -69,7 +69,7 @@ export default class ReferalLinks extends Component {
     return(
       <div className="panel">
         <div className="panel-body" >
-          <div className="form-control-static col-md-10">
+          <div className="form-control-static col-md-12">
             <strong>{lang.linkToRefer}:</strong> 
             <div className="input-group">
               <span className="input-group-addon">
@@ -80,21 +80,6 @@ export default class ReferalLinks extends Component {
                 defaultValue={config.defaultDomain + "/#/register?code=" + JSON.parse(localStorage.getItem("user_data")).username} 
                 onFocus={this.handleFocus}
               />
-            </div>
-          </div>
-          <div className="form-control-static col-md-2">
-            <div className="text-left" >
-              <strong>{lang.activeLeg}</strong> 
-              <select
-                className="form-control"
-                name="currency_id"
-                onChange={value => this.handleChange(value)}
-                value={leg}
-                style={{border: "1px solid #0b92c8" }}
-              >
-                <option value="1">{lang.rightLeg}</option>
-                <option value="0">{lang.leftLeg}</option>
-              </select>
             </div>
           </div>
         </div>

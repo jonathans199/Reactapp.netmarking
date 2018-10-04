@@ -28,24 +28,18 @@ class NavLeft extends Component {
 
   render() {
     const localUser = JSON.parse(localStorage.getItem("user_data"))
-    let activeClass = "custom-ul-show nav nav-second-level collapse in"
-    let hiddenClass = "custom-ul-hidden"
     let urlScrapp   = window.location.hash.split("/")
 
     // parent classes
-    let parentProfile = urlScrapp[1]      == "profile" ? "active" : "no";
     let parentDash    = urlScrapp[1]      == "dashboard" ? "active" : "no";
-    let parentMarket  = urlScrapp[1]      == "market" ? "active" : "no";
-    let parentTransactions = urlScrapp[1] == "transactions" ? "active" : "no";
-    let parentBinary  = urlScrapp[1]      == "binary" ? "active" : "no";
-    let referrerTree  = urlScrapp[1]      == "referrers" ? "active" : "no";
+    let parentPack  = urlScrapp[1]      == "packages" ? "active" : "no";
+    let parentMatrix  = urlScrapp[1]      == "matrix" ? "active" : "no";
+    let parentPay  = urlScrapp[1]   == "pay-outs" ? "active" : "no";
+    let parentStatus = urlScrapp[1]      == "status" ? "active" : "no";
+    let parentTransfer  = urlScrapp[1]      == "transfers" ? "active" : "no";
 
     if (urlScrapp[1] == "dashboard?m=1") parentDash = "active"
       
-    // child classes
-    let childProfile      = urlScrapp[1]  == "profile" ? activeClass : hiddenClass;
-    let childMarket       = urlScrapp[1]  == "market" ? activeClass : hiddenClass;
-    let childTransactions = urlScrapp[1]  == "transactions" ? activeClass : hiddenClass;
     let content
 
     if (localUser.active) {
@@ -53,59 +47,45 @@ class NavLeft extends Component {
         <Aux onResize={() => this.test()}>
           <li className={parentDash}>
             <Link to="/dashboard" className="material-ripple">
-              <i className="la la-television" /> {lang.myDashboard}
+              <i className="material-icons">account_balance</i> {lang.myDashboard}
             </Link>
           </li>
 
-          <li className={parentMarket}>
-            <Link to="/market/investment" className="material-ripple">
-              <i className="la la-cubes"></i> {lang.myMarketplace}
+          <li className={parentPack}>
+            <Link to="/packages" className="material-ripple">
+              <i className="material-icons">add_shopping_cart</i> {lang.myMarketplace}
             </Link>
           </li>
 
-          <li className={parentBinary}>
-            <Link to="/binary">
-              <i className="la la-sitemap"></i> {lang.myBinaryTree}
+          <li className={parentMatrix}>
+            <Link to="/matrix">
+              <i className="material-icons">blur_on</i> {lang.myBinaryTree}
             </Link>
-          </li>
-
-          <li className={parentProfile}>
-            <Link to="/profile/settings">
-              <i className="la la-cog"></i> {lang.myConfiguration}
-              <span className="la la-angle-right " />
-            </Link>
-            <ul className={childProfile}>
-              <li className={urlScrapp[2] == "settings" ? "active" : "no"}>
-                <Link to="/profile/settings">{lang.myProfile}</Link>
-              </li>
-              <li className={urlScrapp[2] == "subscriptions" ? "active" : "no"}>
-                <Link to="/profile/subscriptions">{lang.myPlans}</Link>
-              </li>
-              <li className={urlScrapp[2] == "invoices" ? "active" : "no"}>
-                <Link to="/profile/invoices">{lang.myInvoices}</Link>
-              </li>
-            </ul>
           </li>
           
-          <li className={parentTransactions}>
-            <Link to="/transactions/withdrawal">
-              <i className="la la-paste"></i> {lang.myTransactions}
-              <span className="la la-angle-right " />
+          <li className={parentPay}>
+            <Link to="/pay-outs">
+              <i className="material-icons">timeline</i> Pay outs
             </Link>
-            <ul className={childTransactions}>
-              <li className={urlScrapp[2] == "withdrawal" ? "active" : "no"}>
-                <Link to="/transactions/withdrawal">{lang.myWithdrew}</Link>
-              </li>
-              <li className={urlScrapp[2] == "history" ? "active" : "no"}>
-                <Link to="/transactions/history">{lang.myHistory}</Link>
-              </li>
-            </ul>
           </li>
+
+          <li className={parentStatus}>
+            <Link to="/status">
+              <i className="material-icons">poll</i> Status
+            </Link>
+          </li>
+          
+          <li className={parentTransfer}>
+            <Link to="/transfers">
+              <i className="material-icons">attach_money</i> Transfer
+            </Link>
+          </li>
+
         </Aux>
       )
     } else {
       content = (
-        <li className={parentMarket}>
+        <li className={parentPack}>
           <Link to="/market/investment" className="material-ripple">
             <i className="material-icons">shopping_cart</i> {lang.myProducts}
           </Link>

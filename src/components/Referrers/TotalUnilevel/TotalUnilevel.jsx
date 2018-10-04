@@ -29,7 +29,7 @@ class TotalUnilevel extends Component {
   }
 
   getUnilevelTotal() {
-    fetch(config.defaultURL + "/v1/stats/totals/unilevel",
+    fetch(config.defaultURL + "/stats/totals/unilevel",
       {
         method: "GET",
         headers: {

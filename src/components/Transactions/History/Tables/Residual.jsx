@@ -25,7 +25,7 @@ class Referral extends Component {
     this.getData(event.target.value);
   }
   getData(id) {
-    fetch(config.defaultURL + "/v1/stats/residual_bonus", {
+    fetch(config.defaultURL + "/stats/residual_bonus", {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("auth_token")

@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import SweetAlert from "react-bootstrap-sweetalert";
-import styled from "styled-components";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
-import { Tooltip, OverlayTrigger } from "react-bootstrap";
 
 import DashboardWrapper from "../../../containers/DashboardWrapper/DashboardWrapper";
 import config from "../../../services/config";
@@ -30,12 +27,10 @@ class MySubscriptions extends Component {
 
   componentDidMount() {
     this.getData();
-    this.getPoints();
-    this.getTotalRewards();
   }
 
   getData() {
-    fetch(config.defaultURL + "/v1/subscriptions", {
+    fetch(config.defaultURL + "/subscriptions", {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("auth_token")
@@ -45,69 +40,10 @@ class MySubscriptions extends Component {
         if (response.ok) {
           this.setState({
             subscriptions: data
-          });
+          })
         }
       })
     );
-  }
-
-  getPoints() {
-    fetch(config.defaultURL + "/v1/points/show", {
-      method: "GET",
-      headers: {
-        Authorization: localStorage.getItem("auth_token")
-      }
-    }).then(response =>
-      response.json().then(data => {
-        if (response.ok) {
-          this.setState({
-            points: data
-          });
-        }
-      })
-    );
-  }
-
-  getTotalRewards() {
-    fetch(config.defaultURL + "/v1/points/total_rewards", {
-      method: "GET",
-      headers: {
-        Authorization: localStorage.getItem("auth_token")
-      }
-    }).then(response =>
-      response.json().then(data => {
-        if (response.ok) {
-          this.setState(
-            {
-              totalRewards: data
-            },
-            () => {
-              this.assignProgBarPerc();
-            }
-          );
-        }
-      })
-    );
-  }
-
-  assignProgBarPerc() {
-    const totalRewards = { ...this.state.totalRewards };
-    const maxPayment = this.state.points.max_payment;
-    const sum =
-      totalRewards.investment + totalRewards.binary + totalRewards.ten_first;
-    const partialTotal = sum / maxPayment;
-    const partialInvestment = totalRewards.investment / sum;
-    const partialBinary = totalRewards.binary / sum;
-    const partialTenFirst = totalRewards.ten_first / sum;
-    let progressBarsValues = {
-      ...this.state.progressBarsValues
-    };
-    progressBarsValues = {
-      investment: partialTotal * partialInvestment * 100,
-      binary: partialTotal * partialBinary * 100,
-      ten_first: partialTotal * partialTenFirst * 100
-    };
-    this.setState({ progressBarsValues })
   }
 
   indexN(cell, row, enumObject, index) {
@@ -159,73 +95,22 @@ class MySubscriptions extends Component {
   }
 
   valueFormat(cell, row) {
-    let string = "$" + row.price + "  USD"
+    let string = "$" + row.plan_value + "  USD"
     return <span>{string}</span>;
   }
 
   render() {
-    const Start = styled.div`
-      float: left;
-    `;
-    const Stop = styled.div`
-      float: right;
-      text-align: right;
-    `;
-    const Circle = styled.p`
-      border: 1px solid #333;
-      height: 15px;
-      width: 15px;
-      margin: 10px;
-      background-color: #558b2f;
-      -moz-border-radius: 75px;
-      -webkit-border-radius: 75px;
-    `;
-    const tooltip = (
-      <Tooltip id="tooltip">
-        <p>User max payment</p>
-      </Tooltip>
-    );
-    const points = this.state.points;
-    const progressBarsValues = { ...this.state.progressBarsValues };
-    const totalRewards = { ...this.state.totalRewards };
-    const sumTotalRewards =
-      totalRewards.investment + totalRewards.binary + totalRewards.ten_first;
-    const maxPayment = this.state.points.max_payment;
-    const remaining = maxPayment - sumTotalRewards;
-    const investmentTooltip = (
-      <Tooltip id="tooltip">
-        <p>Total: ${totalRewards.investment}</p>
-      </Tooltip>
-    );
-    const binaryTooltip = (
-      <Tooltip id="tooltip">
-        <p>Total: ${totalRewards.binary}</p>
-      </Tooltip>
-    );
-    const tenFirstTooltip = (
-      <Tooltip id="tooltip">
-        <p>Total: ${totalRewards.ten_first}</p>
-      </Tooltip>
-    );
-    const totalTooltip = (
-      <Tooltip id="tooltip">
-        <p>
-          Remaining: ${remaining} ({(remaining / maxPayment * 100).toFixed(1)}%)
-        </p>
-      </Tooltip>
-    );
-
     return (
       <DashboardWrapper>
        <div className="content-header">
-            <div class="breadcrumb-wrapper col-12">
+            <div className="breadcrumb-wrapper col-12">
               <div className="header-title flexBox">
                 <div id="title" >
-                  <h1 class="">{lang.title5}</h1>
+                  <h1 className="">{lang.title5}</h1>
                 </div>
                 <div id="path" >
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Settings</a>
+                  <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><a href="#">Settings</a>
                     </li>
                     <li className="active">{lang.title5}</li>
                   </ol>

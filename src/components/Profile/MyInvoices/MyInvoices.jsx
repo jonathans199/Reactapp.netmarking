@@ -36,7 +36,7 @@ export default class MyInvoices extends Component {
   }
 
   getData() {
-    fetch(config.defaultURL + "/v1/invoices", {
+    fetch(config.defaultURL + "/invoices", {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("auth_token")
@@ -82,14 +82,14 @@ export default class MyInvoices extends Component {
     return (
       <DashboardWrapper>
         <div className="content-header">
-            <div class="breadcrumb-wrapper col-12">
+            <div className="breadcrumb-wrapper col-12">
               <div className="header-title flexBox">
                 <div id="title" >
-                  <h1 class="">{lang.title6}</h1>
+                  <h1 className="">{lang.title6}</h1>
                 </div>
                 <div id="path" >
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Settings</a>
+                  <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><a href="#">Settings</a>
                     </li>
                     <li className="active">{lang.title6}</li>
                   </ol>

@@ -22,7 +22,7 @@ class Binary extends Component {
   }
 
   getData() {
-    fetch(config.defaultURL + "/v1/stats/binary", {
+    fetch(config.defaultURL + "/stats/binary", {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("auth_token")

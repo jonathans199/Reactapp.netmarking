@@ -42,14 +42,14 @@ export default class Dashboard extends Component {
       <DashboardWrapper>
         <ToastContainer />
         <div className="content-header">
-          <div class="breadcrumb-wrapper col-12">
+          <div className="breadcrumb-wrapper col-12">
             <div className="header-title flexBox">
               <div id="title" >
-                <h1 class="">{lang.title1}</h1>
+                <h1 className="">{lang.title1}</h1>
               </div>
               <div id="path" >
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="index.html">Home</a>
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item"><a href="index.html">Home</a>
                   </li>
                   <li className="active">{lang.title1}</li>
                 </ol>
@@ -58,13 +58,12 @@ export default class Dashboard extends Component {
             </div>
           </div>
         </div>
-      
         
         <div className="row">
           <div className="col-sm-12 col-md-8">
             <ReferalLinks />
             <RewardCharts />
-            <MarketCap />
+            {/* <MarketCap /> */}
           </div>
           <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             <UserVault />

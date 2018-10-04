@@ -27,7 +27,7 @@ class Purchases extends Component {
   }
 
   getData() {
-    fetch(config.defaultURL + "/v1/stats/purchases", {
+    fetch(config.defaultURL + "/stats/purchases", {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("auth_token")

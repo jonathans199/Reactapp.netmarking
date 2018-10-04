@@ -31,7 +31,7 @@ export default class Referrers extends Component {
   }
 
   getData(){
-    fetch(config.defaultURL + "/v1/unilevel/tree", {
+    fetch(config.defaultURL + "/unilevel/tree", {
       method: "GET",
       headers: {
         "content-type": "application/json",

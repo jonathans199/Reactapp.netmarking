@@ -24,7 +24,7 @@ export default class AccountSettings extends Component {
   }
 
   getUser() {
-    fetch(config.defaultURL + "/v1/users/show/", {
+    fetch(config.defaultURL + "/users/show/", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -48,7 +48,7 @@ export default class AccountSettings extends Component {
 
   updateUserData() {
     this.setState({ loading: true })
-    fetch(config.defaultURL + "/v1/users/update/", {
+    fetch(config.defaultURL + "/users/update/", {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -82,7 +82,7 @@ export default class AccountSettings extends Component {
   }
 
   updateUserPassword() {
-    fetch(config.defaultURL + "/v1/users/update/", {
+    fetch(config.defaultURL + "/users/update/", {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -176,14 +176,14 @@ export default class AccountSettings extends Component {
       <DashboardWrapper>
         <ToastContainer />
         <div className="content-header">
-            <div class="breadcrumb-wrapper col-12">
+            <div className="breadcrumb-wrapper col-12">
               <div className="header-title flexBox">
                 <div id="title" >
-                  <h1 class="">{lang.title4}</h1>
+                  <h1 className="">{lang.title4}</h1>
                 </div>
                 <div id="path" >
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Settings</a>
+                  <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><a href="#">Settings</a>
                     </li>
                     <li className="active">{lang.title4}</li>
                   </ol>

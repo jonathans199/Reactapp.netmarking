@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
-import { Button } from 'reactstrap'
-import logoTop from './../../../assets/img/Logo-tradingWaves_white.png'
+import logoTop from './../../../assets/img/netmarketcap-logo-widewht.png'
 
 import "./NavTop.css";
 
@@ -24,7 +23,7 @@ class NavTop extends Component {
   }
 
   verifySession(){
-    fetch(config.defaultURL + "/v1/users/verify_session", {
+    fetch(config.defaultURL + "/sessions", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -57,6 +56,7 @@ class NavTop extends Component {
   }
 
   render() {
+    let username = JSON.parse(localStorage.getItem('user_data')).username
     const Logout = styled.span`
       font-size: 14px;
     `;
@@ -92,24 +92,33 @@ class NavTop extends Component {
         <div className="nav-container">
           <ul className="nav navbar-nav hidden-xs">
             <li>
-              <button onClick={() => this.updateLang()} style={{marginTop:24, marginLeft: 20}}>
-                {/* {this.state.lang} */}
-                <img src={this.state.flag} className='img-responsive' style={{width:25}} />
-              </button>
+              <Link to={"/"} id="fullscreen">
+                <i className="material-icons">fullscreen</i>{" "}
+              </Link>
             </li>
           </ul>
           <ul className="nav navbar-top-links navbar-right">
-            <span>
-              Hello,{" "} 
-            </span>
-            <Username>
-              {this.state.username} <i className="fa fa-user-circle-o" />
-            </Username>
+            <li className="dropdown">
+              <a
+                href=""
+                className="dropdown-toggle"
+                data-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i className="material-icons">person_add</i>
+              </a>
+              <ul className="dropdown-menu dropdown-user">
+                <li><Link to="/profile/settings">&nbsp; Hi, {username}</Link></li>
+                <li className="divider" />
+                <li><Link to="/profile/settings"><i className="ti-user"></i>&nbsp; Profile</Link></li>
+                <li className="divider" />
+                <li><Link to="/profile/invoices"><i className="ti-direction-alt"></i>&nbsp; Invoices</Link></li>
+              </ul>
+              
+            </li>
             <li className="log_out">
-              <Link to="/logout" style={{ paddingBottom: 25}}>
-                <Logout>
-                  <i className="fa fa-sign-out" /> Logout
-                </Logout>
+              <Link to="/logout">
+                <i className="material-icons">power_settings_new</i>
               </Link>
             </li>
           </ul>

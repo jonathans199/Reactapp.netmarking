@@ -47,7 +47,7 @@ export default class Modal extends Component {
 
   createInvoice(value) {
     this.setState({ loaded: false, paymentMethod: value })
-    fetch(config.defaultURL + "/v1/invoices", {
+    fetch(config.defaultURL + "/invoices", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -157,7 +157,7 @@ export default class Modal extends Component {
           <div className='modal-content'>
             <div className="modal-header">
               <h4 className="js-title-step">
-                <span className="label label-pill label-success">{this.state.step}</span> 
+                <span className="label label-pill label-success">{" "}{this.state.step}</span> 
                 {this.state.title}
               </h4>
             </div>

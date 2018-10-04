@@ -17,7 +17,7 @@ export default class Modal extends Component {
 
   setSubs(value) {
     this.setState({ loaded: false })
-    fetch(config.defaultURL + "/v1/subscriptions/" + value, {
+    fetch(config.defaultURL + "/subscriptions/" + value, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -47,11 +47,11 @@ export default class Modal extends Component {
             <tbody>
             <tr>
               <td>{lang.plan}</td>
-              <td>{subs.plan_id}</td>
+              <td>{subs.plan_name}</td>
             </tr>
             <tr>
               <td>{lang.planValue}</td>
-              <td>${subs.price} USD</td>
+              <td>${subs.plan_value} USD</td>
             </tr>
             <tr>
               <td>{lang.status}</td>

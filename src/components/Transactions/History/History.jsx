@@ -28,14 +28,14 @@ class History extends Component {
     return (
       <DashboardWrapper>
       <div className="content-header">
-            <div class="breadcrumb-wrapper col-12">
+            <div className="breadcrumb-wrapper col-12">
               <div className="header-title flexBox">
                 <div id="title" >
-                  <h1 class="">{lang.title8}</h1>
+                  <h1 className="">{lang.title8}</h1>
                 </div>
                 <div id="path" >
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Transactions</a>
+                  <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><a href="#">Transactions</a>
                     </li>
                     <li className="active">{lang.title8}</li>
                   </ol>
@@ -64,18 +64,13 @@ class History extends Component {
                       </a>
                     </li>
                     <li>
-                      <a href="#tab2" data-toggle="tab">
-                        <i className="material-icons">device_hub</i> {lang.binaryBonus}
-                      </a>
-                    </li>
-                    <li>
                       <a href="#tab3" data-toggle="tab">
                         <i className="material-icons">person</i> {lang.unilevelBonus}
                       </a>
                     </li>
                     <li>
                       <a href="#tab6" data-toggle="tab">
-                        <i className="material-icons">people</i> {lang.residualBonus}
+                        <i className="material-icons">people</i> Matrix Bonus
                       </a>
                     </li>
                     <li>
@@ -98,16 +93,6 @@ class History extends Component {
                           </strong>
                         </p>
                         <Investments />
-                      </div>
-                    </div>
-                    <div className="tab-pane fade " id="tab2">
-                      <div className="panel-body">
-                        <p>
-                          <strong>
-                            {lang.historyText2}
-                          </strong>
-                        </p>
-                        <Binary />
                       </div>
                     </div>
                     <div className="tab-pane fade " id="tab3">

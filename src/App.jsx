@@ -36,17 +36,12 @@ class App extends Component {
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/profile/settings" component={AccountSettings} />
           <Route exact path="/profile/invoices" component={MyInvoices} />
-          <Route
-            exact
-            path="/profile/subscriptions"
-            component={MySubscriptions}
-          />
-          <Route exact path="/market/investment" component={InvestmentPlans} />
-          <Route exact path="/transactions/withdrawal" component={Withdrawal} />
-          <Route exact path="/transactions/history" component={History} />
-          <Route exact path="/binary" component={Binary} />
+          <Route exact path="/status" component={MySubscriptions} />
+          <Route exact path="/packages" component={InvestmentPlans} />
+          <Route exact path="/transfers" component={Withdrawal} />
+          <Route exact path="/pay-outs" component={History} />
+          <Route exact path="/matrix" component={Binary} />
           <Route exact path="/referrers" component={Referrers} />
-          <Route exact path="/withoutBot" component={UserWithoutBot} />
           <Route exact path="/inactive" component={UserInactive} />
           <Route component={Login} />
         </Switch>

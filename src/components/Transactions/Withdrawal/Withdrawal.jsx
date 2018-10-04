@@ -38,7 +38,7 @@ class Withdrawal extends Component {
   }
 
   getVault() {
-    fetch(config.defaultURL + "/v1/vaults/user", {
+    fetch(config.defaultURL + "/vaults/user", {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("auth_token")
@@ -71,7 +71,7 @@ class Withdrawal extends Component {
   }
 
   createWithdrawal() {
-    fetch(config.defaultURL + "/v1/withdrawals/new", {
+    fetch(config.defaultURL + "/withdrawals/new", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -150,14 +150,14 @@ class Withdrawal extends Component {
       content = (
         <Aux>
         <div className="content-header">
-            <div class="breadcrumb-wrapper col-12">
+            <div className="breadcrumb-wrapper col-12">
               <div className="header-title flexBox">
                 <div id="title" >
-                  <h1 class="">{lang.title7}</h1>
+                  <h1 className="">{lang.title7}</h1>
                 </div>
                 <div id="path" >
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Transactions</a>
+                  <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><a href="#">Transactions</a>
                     </li>
                     <li className="active">{lang.title7}</li>
                   </ol>

@@ -17,7 +17,7 @@ export default class Modal extends Component {
 
   setInvoice(value) {
     this.setState({ loaded: false })
-    fetch(config.defaultURL + "/v1/invoices/" + value, {
+    fetch(config.defaultURL + "/invoices/" + value, {
       method: "GET",
       headers: {
         "content-type": "application/json",

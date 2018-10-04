@@ -27,7 +27,7 @@ class Investments extends Component {
   }
 
   getData(id) {
-    fetch(config.defaultURL + "/v1/stats/investments?id=" + id, {
+    fetch(config.defaultURL + "/stats/investments?id=" + id, {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("auth_token")

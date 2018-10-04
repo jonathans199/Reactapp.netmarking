@@ -73,7 +73,7 @@
 .navbar-nav>.open>a:hover,
 .navbar-top-links>li.log_out a {
     color: #fff;
-    background-color: #2C303B
+    background-color: #20293D
 }
 
 .navbar-nav .open>a,
@@ -88,7 +88,7 @@
 }
 
 .navbar-header {
-    background-color: #2C303B
+    background-color: #20293D
 }
 
 .nav>li>a.btn-buy {
@@ -124,7 +124,7 @@
 
 .back-top,
 .sidebar {
-    background-color: #2C303B
+    background-color: #20293D
 }
 
 .sidebar .nav-heading {

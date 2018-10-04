@@ -18,7 +18,7 @@ export default class LastUsers extends Component {
   }
 
   getData() {
-    fetch(config.defaultURL + "/v1/users",
+    fetch(config.defaultURL + "/users",
       {
         method: "GET",
         headers: {

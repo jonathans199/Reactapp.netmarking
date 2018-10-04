@@ -1,4 +1,15 @@
 @charset "UTF-8";
+
+.button__login {
+    background-color: #f9be00;
+    color: black;
+    font-weight: 500;
+}
+
+.content{
+    margin-left: 15px;
+}
+
 #page-wrapper {
     padding: 0 15px;
     min-height: 1000px
@@ -38,8 +49,9 @@
 
 @media (min-width:768px) {
     .nav-container {
+        background-color: #F9B800 !important;
         padding: 0 1rem;
-        height: 70px;
+        height: 71px;
         background: inherit;
         margin-left: 265px;
         position: relative
@@ -258,6 +270,7 @@
 }
 
 .navbar-top-links {
+    background-color: #F9B800 !important;
     margin-right: 0
 }
 
@@ -549,7 +562,7 @@
     padding-left: 10px;
     /* transform: translateX(-8px); */
     transform: translateX(3px);
-    background-color: #2C303B;
+    background-color: #0C1428;
 }
 .sidebar .nav-second-level .no:hover, 
 .sidebar .nav-second-level .active:hover {
@@ -558,15 +571,14 @@
 }
 
 .sidebar .no {
-    background-color: #2C303B !important
+    background-color: #20293D !important
 }
 .sidebar .no:hover {
-
-    transform: translateX(-4px)
+    transform: translateX(3px)
 }
 .sidebar ul li {
     display: block;
-    border-right: 3px solid transparent;
+    border-left: 3px solid transparent;
     transition: .3s;
     line-height: 24px;
     font-size: 15px
@@ -580,14 +592,14 @@
 .sidebar ul li.active,
 .sidebar ul li:hover {
     color: #fff;
-    border-color: #fe3f56;
+    border-color: #F9B800;
     /* background-color: rgba(255, 255, 255, .09); */
     background-color: #23262F;
 }
 
 .sidebar ul li.active,
 .sidebar ul li.active:hover {
-    border-color: #fe3f56
+    border-color: #F9B800
 }
 
 .sidebar ul li span.nav-tag {
