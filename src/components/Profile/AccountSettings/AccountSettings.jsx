@@ -244,7 +244,7 @@ export default class AccountSettings extends Component {
                   <p className="form-control-static">
                     <strong>
                       <code>
-                        {config.defaultDomain}/#/register?code={
+                        {config.defaultDomain}/#/register?reffer={
                           this.state.userData.uuid
                         }
                       </code>

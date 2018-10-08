@@ -43,10 +43,26 @@ export default class UserVault extends React.Component {
     let balance = '$' + this.state.userProfit + 'USD'
       if (this.state.loading) balance = <i className="fa fa-spinner fa-spin"/>
     return (
-      <div className="panel panel-bd lobidisable">
-        <div className="panel-body text-right">
-          <h2>{lang.availableBalance}</h2>
-          <h1 className='text-success makemoneybigger'>{balance}</h1>
+      <div className="vault__content">
+        <div className="card vault__content-1">
+          <div className="panel-body text-left">
+            <h3>TRADING TOTAL TIME</h3>
+            <h2 className='text-white'>{balance}</h2>
+          </div>
+        </div>
+        
+        <div className="card vault__content-2">
+          <div className="panel-body text-left">
+            <h3>UNILEVEL TOTAL TIME</h3>
+            <h2 className='text-white'>{balance}</h2>
+          </div>
+        </div>
+
+        <div className="card vault__content-3">
+          <div className="panel-body text-left">
+            <h3>MATRIX TOTAL TIME</h3>
+            <h2 className='text-white'>{balance}</h2>
+          </div>
         </div>
       </div>
     )

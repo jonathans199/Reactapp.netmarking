@@ -67,20 +67,15 @@ export default class ReferalLinks extends Component {
   render(){
     let leg = !this.state.right ?  (0) : (1)
     return(
-      <div className="panel">
-        <div className="panel-body" >
-          <div className="form-control-static col-md-12">
-            <strong>{lang.linkToRefer}:</strong> 
-            <div className="input-group">
-              <span className="input-group-addon">
-                <i className="fa fa-link" />
-              </span>
-              <input 
-                className="form-control" 
-                defaultValue={config.defaultDomain + "/#/register?code=" + JSON.parse(localStorage.getItem("user_data")).username} 
-                onFocus={this.handleFocus}
-              />
-            </div>
+      <div >
+        <div className="form-control-static referrer__container">
+          <div className="input-group">
+            <i className="fa fa-plus-circle"></i>
+            <input 
+              className="form-control" 
+              defaultValue={config.defaultDomain + "/#/register?reffer=" + JSON.parse(localStorage.getItem("user_data")).username} 
+              onFocus={this.handleFocus}
+            />
           </div>
         </div>
       </div>

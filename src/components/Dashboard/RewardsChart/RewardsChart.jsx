@@ -14,9 +14,21 @@ export default class RewardsChart extends Component {
   }
 
   componentDidMount(){
-    this.getData()
+    // this.getData()
+    this.createWidget()
   }
 
+  createWidget(){
+
+    const script = document.createElement("script");
+
+    script.async = true;
+
+    script.text = 'baseUrl = "https://widgets.cryptocompare.com/";var scripts = document.getElementsByTagName("script");var embedder = scripts[ scripts.length - 1 ];(function (){var appName = encodeURIComponent(window.location.hostname);if(appName==""){appName="local";}var s = document.createElement("script");s.type = "text/javascript";s.async = true;var theUrl = baseUrl+"serve/v3/coin/chart?fsym=BTC&tsyms=USD,EUR,CNY,GBP";s.src = theUrl + ( theUrl.indexOf("?") >= 0 ? "&" : "?") + "app=" + appName;;document.getElementById("charts-2").appendChild(s);})();'
+    
+    document.body.appendChild(script)
+  }
+  
   getData() {
     fetch( config.defaultURL + "/rewards",
       {
@@ -48,14 +60,9 @@ export default class RewardsChart extends Component {
     }
 
     return (
-      <div className="panel panel-bd lobidrag">
-        <div className="panel-heading">
-          <div className="panel-title">
-            <h4>{lang.monthlyProfit}</h4>
-          </div>
-        </div>
-        <div className="panel-body">
-          {chart}
+      <div className="card">
+        <div className="panel-body" id="charts-2">
+          <h4 className="text-left">Crypto Data</h4>
         </div>
       </div>
     )

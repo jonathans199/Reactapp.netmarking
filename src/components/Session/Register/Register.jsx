@@ -29,7 +29,7 @@ class Register extends Component {
   }
 
   componentWillMount() {
-    let url = window.location.toString().split("?code=");
+    let url = window.location.toString().split("?reffer=");
     this.setState(
       {
         url: url

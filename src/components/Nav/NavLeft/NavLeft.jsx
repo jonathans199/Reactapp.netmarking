@@ -95,16 +95,13 @@ class NavLeft extends Component {
 
     return (
       <Aux>
-        <div className="sidebar" role="navigation">
+        <div className="sidebar net__menu " role="navigation">
           <div className={this.state.classWidth}>
             <ul className="nav" id="side-menu">
-              <li className="nav-heading ">
-              </li>
               {content}
             </ul>
           </div>
         </div>
-        <div className="control-sidebar-bg" />
       </Aux>
     )
   }

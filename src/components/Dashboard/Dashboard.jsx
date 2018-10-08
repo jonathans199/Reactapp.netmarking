@@ -60,14 +60,16 @@ export default class Dashboard extends Component {
         </div>
         
         <div className="row">
-          <div className="col-sm-12 col-md-8">
+          <div className="col-sm-12 col-md-12">
             <ReferalLinks />
+          </div>
+          <div className="col-sm-12 col-md-8">
             <RewardCharts />
             {/* <MarketCap /> */}
           </div>
           <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             <UserVault />
-            <LastUsers />
+            {/* <LastUsers /> */}
           </div>
         </div>
       </DashboardWrapper>

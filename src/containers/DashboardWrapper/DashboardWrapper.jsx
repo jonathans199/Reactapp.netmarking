@@ -11,7 +11,11 @@ const dashboardWrapper = props => {
         <div className="content">
           <div className="main_content">{props.children}</div>
         </div>
+        
       </div>
+      <footer class="footer">
+        © 2018 Backoffice Pro by NetMarketCap
+      </footer>
     </div>
   );
 };

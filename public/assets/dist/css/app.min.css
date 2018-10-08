@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 .button__login {
     background-color: #f9be00;
     color: black;
@@ -7,19 +8,23 @@
 }
 
 .content{
-    margin-left: 15px;
+    /* margin-left: 15px; */
 }
 
 #page-wrapper {
-    padding: 0 15px;
+    max-width: 1280px;
+    margin: 0 auto;
+    margin-top: 70px;
     min-height: 1000px
 }
 
 @media (min-width:768px) {
     #page-wrapper {
         position: inherit;
-        margin: 70px 0 0 250px;
-        padding: 0 30px 30px
+        max-width: 1280px;
+        margin: 0 auto;
+        margin-top: 70px;
+        padding: 50px 0px 0px
     }
 }
 
@@ -267,10 +272,16 @@
     .navbar-brand>img {
         height: 40px
     }
+
+    .navbar-top-links .dropdown-toggle {
+        color: white !important;    
+    }
+
 }
 
 .navbar-top-links {
-    background-color: #F9B800 !important;
+    /* background-color: #F9B800 !important; */
+    /* color: white !important;     */
     margin-right: 0
 }
 
@@ -506,8 +517,11 @@
 }
 
 @media (max-width:767px) {
+    .navbar__container-widgets{
+        background-color: #20293D
+    }
     .navbar-header {
-        background-color: #1c2260
+        background-color: #F9B800
     }
     .navbar-toggle {
         border: 0;
@@ -578,7 +592,7 @@
 }
 .sidebar ul li {
     display: block;
-    border-left: 3px solid transparent;
+    border-bottom: 3px solid transparent;
     transition: .3s;
     line-height: 24px;
     font-size: 15px
