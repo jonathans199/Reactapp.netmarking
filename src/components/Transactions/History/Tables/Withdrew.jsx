@@ -54,7 +54,7 @@ class Withdrew extends Component {
       if (row.currency_id == "USD") pic   = <img src={usdt} />
     return (
       <span>
-        {pic} {name}
+        {name}
       </span>
     );
   }
@@ -64,8 +64,15 @@ class Withdrew extends Component {
   }
 
   setStatus(cell, row) {
-    let classColor = cell == "Paid" ? "text-success" : "text-warning";
-    return <span className={classColor}>{cell}</span>;
+    let status
+    if (row.withdawal_status_id == 13)
+      status = (<div className='label label-pill label-danger m-r-15'>CANCELED</div>)
+    else if (row.withdawal_status_id == 12){
+      status = (<div className='label label-pill label-success m-r-15'>COMPLETE</div>)
+    } else{
+      status = (<div className='label label-pill label-warning m-r-15'>AWAITING PAYMENT</div>)
+    }
+    return status
   }
 
   setWallet(cell,row){
@@ -91,8 +98,18 @@ class Withdrew extends Component {
           dataAlign="center"
           width="5%"
           className="textTable textTableSize"
+          hidden
         >
           #
+        </TableHeaderColumn>
+        <TableHeaderColumn
+          dataField="created_at"
+          dataSort={true}
+          headerAlign="left"
+          dataAlign="left"
+          className="textTable textTableSize"
+        >
+          Date
         </TableHeaderColumn>
         <TableHeaderColumn
           dataFormat={(cell, row) => this.setSettle(cell, row)}
@@ -112,19 +129,11 @@ class Withdrew extends Component {
         >
           {lang.comission}
         </TableHeaderColumn>
-        <TableHeaderColumn
-          dataFormat={(cell, row) => this.setStatus(cell, row)}
-          dataField="withdrawal_status_id"
-          headerAlign="center"
-          dataAlign="center"
-          className="textTable textTableSize"
-        >
-          {lang.status}
-        </TableHeaderColumn>
+        
         <TableHeaderColumn
           dataFormat={(cell, row) => this.setCurrency(cell, row)}
-          headerAlign="center"
-          dataAlign="center"
+          headerAlign="left"
+          dataAlign="left"
           className="textTable textTableSize"
         >
           {lang.currency}
@@ -138,13 +147,13 @@ class Withdrew extends Component {
           {lang.wallet}
         </TableHeaderColumn>
         <TableHeaderColumn
-          dataField="created_at"
-          dataSort={true}
-          headerAlign="right"
-          dataAlign="right"
+          dataFormat={(cell, row) => this.setStatus(cell, row)}
+          dataField="withdrawal_status_id"
+          headerAlign="left"
+          dataAlign="left"
           className="textTable textTableSize"
         >
-          {lang.comission}
+          {lang.status}
         </TableHeaderColumn>
       </BootstrapTable>
     ) : (
@@ -154,8 +163,9 @@ class Withdrew extends Component {
       </div>
     )
     return (
-      <div className="panel">
-        <div className="panel-body">{table}</div>
+      <div>
+        
+        {table}
       </div>
     )
   }

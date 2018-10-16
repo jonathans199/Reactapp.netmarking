@@ -7,15 +7,14 @@ import "./Tree.css";
 import config from "../../services/config"
 import User from "./User/User"
 import lang from "./../../services/lang"
+import Matrix from './Matrix/Matrix'
 
 class Tree extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      matrices: false,
-      tree: ["", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-      root: JSON.parse(localStorage.getItem("user_data")).uuid,
-      treeArray: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+      matrices: [],
+      matrixID: 0
     }
   }
 
@@ -24,7 +23,7 @@ class Tree extends React.Component {
   }
 
   getData() {
-    if(this.state.root) fetch(config.defaultURL + "/trees/user/" + this.state.root, {
+    fetch(config.defaultURL + "/trees", {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("auth_token")
@@ -32,184 +31,41 @@ class Tree extends React.Component {
     }).then(response =>
       response.json().then(data => {
         if (response.ok) {
+          if(data.length > 0) this.selectMatrix(data[0])
           this.setState({
-            matrices: true,
-            treeArray: this.generateTreeArray(data.users)
-          })
-        } else {
-          this.setState({
-            matrices: false
+            matrices: data
           })
         }
       })
     )
   }
 
-  generateTreeArray(arry) {
-    let total = 15
-    arry = arry.map((user) => { 
-      return [user.uuid, user.username] 
-    })
-    if (arry.length < total) {
-      Array(total - arry.length).fill().map(()=>{ arry.push([0,0])})
-    }
-    return arry
+  selectMatrix(matrix){
+    this.setState({matrixID: matrix.id})
+    this.refs.child.setMatrix(matrix)
   }
 
   render() {
     let content
-    if(this.state.matrices) content = (
-      <div className="row">
-        <div className="col-md-12">
-          <div className="tree">
-          <ul className="matrix__align">
-              <li className="responsive">
-                <User
-                  username={this.state.treeArray[0][1]}
-                  uuid={this.state.treeArray[0][0]}
-                  clicked={e => this.changeMainRoot(e)}
-                  placement="top"
-                />
-                <ul>
-                  <li>
-                    <User
-                      username={this.state.treeArray[1][1]}
-                      uuid={this.state.treeArray[1][0]}
-                      clicked={e => this.changeMainRoot(e)}
-                      placement="left"
-                    />
-                    <ul>
-                      <li>
-                        <User
-                          username={this.state.treeArray[3][1]}
-                          uuid={this.state.treeArray[3][0]}
-                          clicked={e => this.changeMainRoot(e)}
-                          placement="left"
-                        />
-                        <ul>
-                          <li>
-                            <User
-                              username={this.state.treeArray[7][1]}
-                              uuid={this.state.treeArray[7][0]}
-                              clicked={e => this.changeMainRoot(e)}
-                              placement="bottom"
-                            />
-                          </li>
-                          <li className="responsive3">
-                            <User
-                              username={this.state.treeArray[8][1]}
-                              uuid={this.state.treeArray[8][0]}
-                              clicked={e => this.changeMainRoot(e)}
-                              placement="right"
-                            />
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <User
-                          username={this.state.treeArray[4][1]}
-                          uuid={this.state.treeArray[4][0]}
-                          clicked={e => this.changeMainRoot(e)}
-                          placement="bottom"
-                        />
-                        <ul>
-                          <li>
-                            <User
-                              username={this.state.treeArray[9][1]}
-                              uuid={this.state.treeArray[9][0]}
-                              clicked={e => this.changeMainRoot(e)}
-                              placement="bottom"
-                            />
-                          </li>
-                          <li className="responsive3">
-                            <User
-                              username={this.state.treeArray[10][1]}
-                              uuid={this.state.treeArray[10][0]}
-                              clicked={e => this.changeMainRoot(e)}
-                              placement="right"
-                            />
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                  <li className="responsive2">
-                    <User
-                      username={this.state.treeArray[2][1]}
-                      uuid={this.state.treeArray[2][0]}
-                      clicked={e => this.changeMainRoot(e)}
-                      placement="right"
-                    />
-                    <ul>
-                      <li>
-                        <User
-                          username={this.state.treeArray[5][1]}
-                          uuid={this.state.treeArray[5][0]}
-                          clicked={e => this.changeMainRoot(e)}
-                          placement="bottom"
-                        />
-                        <ul>
-                          <li>
-                            <User
-                              username={this.state.treeArray[11][1]}
-                              uuid={this.state.treeArray[11][0]}
-                              clicked={e => this.changeMainRoot(e)}
-                              placement="bottom"
-                            />
-                          </li>
-                          <li className="responsive3">
-                            <User
-                              username={this.state.treeArray[12][1]}
-                              uuid={this.state.treeArray[12][0]}
-                              clicked={e => this.changeMainRoot(e)}
-                              placement="right"
-                            />
-                          </li>
-                        </ul>
-                      </li>
-                      <li className="responsive3">
-                        <User
-                          username={this.state.treeArray[6][1]}
-                          uuid={this.state.treeArray[6][0]}
-                          clicked={e => this.changeMainRoot(e)}
-                          placement="right"
-                        />
-                        <ul>
-                          <li>
-                            <User
-                              username={this.state.treeArray[13][1]}
-                              uuid={this.state.treeArray[13][0]}
-                              clicked={e => this.changeMainRoot(e)}
-                              placement="bottom"
-                            />
-                          </li>
-                          <li className="responsive3">
-                            <User
-                              username={this.state.treeArray[14][1]}
-                              uuid={this.state.treeArray[14][0]}
-                              clicked={e => this.changeMainRoot(e)}
-                              placement="right"
-                            />
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    )
+    let matrices = this.state.matrices.map((matrix,index) => {
+      return (
+        <li className={this.state.matrixID == matrix.id ? "active" : ""} key={index}>
+          <a href="#tab1" data-toggle="tab" onClick={() => this.selectMatrix(matrix)}>
+            <i className="la la-puzzle-piece"></i>{" "}
+            {matrix.plan} - ${matrix.plan_price} USD
+          </a>
+        </li>
+      )
+    })
 
-    if(!this.state.matrices) content = (
-      <div className="text-center" style={{ height: 400 }}>
-        <h1>
+    if(this.state.matrices.length === 0) matrices = (
+      <li className={"active"}  >
+        <a href="#tab1" data-toggle="tab" >
+          <i className="la la-puzzle-piece"></i>{" "}
           No active matrices
-        </h1>
-      </div>
-    )
+        </a>
+      </li>)
+    
     return (
       <DashboardWrapper>
         <ToastContainer />
@@ -229,26 +85,35 @@ class Tree extends React.Component {
             </div>
           </div>
         </div>
+
         <div className="row">
-          <div className="col-sm-12 col-md-12" >
-            <div
-              className="panel panel-bd "
-              data-inner-id="VK9TqcVBP2"
-              data-index={0}
-            >
-              <div className="panel-heading ui-sortable-handle">
-                <div className="panel-title">
-                  <i className="fa fa-sitemap" /> <h4>{lang.title3}</h4>
-                </div>
+          <div className="col-xs-12 col-sm-12 col-md-12 m-b-20">
+            <div className="col-xs-2 col-sm-2 p-0">
+              <ul className="nav nav-tabs tabs-left">
+                {matrices}
+              </ul>
+            </div>
+            <div className="col-xs-10 col-sm-10 p-0">
+              <div className="extract__title">
+                MATRICES
               </div>
-              <div className="panel-body">
-                {content}
+              
+              <div className="tab-content">
+                <div className="tab-pane fade in active" id="tab1">
+                  <div className="panel">
+                    <div className="panel-body" style={{minHeight: 450}}>
+                      <Matrix
+                        ref="child"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </DashboardWrapper>
-    );
+    )
   }
 }
-export default Tree;
+export default Tree

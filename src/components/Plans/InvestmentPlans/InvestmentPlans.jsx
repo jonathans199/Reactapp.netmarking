@@ -7,6 +7,8 @@ import PlansPanel from "./UI/PlansPanel";
 import Modal from "../UI/Modal/Modal";
 import lang from "./../../../services/lang";
 import SweetAlert from 'react-bootstrap-sweetalert'
+var jwtDecode = require('jwt-decode');
+
 
 export default class InvestmentPlans extends Component {
   constructor(props) {
@@ -24,7 +26,13 @@ export default class InvestmentPlans extends Component {
   componentWillMount(){
     this.getData()
     let active = JSON.parse(localStorage.getItem('user_data')).active_plan
-    this.setState({ active })
+    // this.setState({ active })
+
+    // var token = 'eyJhbGciOiJIUzI1NiJ9.eyJ1dWlkIjoiZDc3ODY5ZjEtNDU4Yi00NjAzLTg0MzUtOTc0MTJlZjU0ZWExIiwiZXhwIjoxNTQwMjEwMjQ5fQ.3vj8kPNIzmAqJ4g_arOlv3V3sGBCfKSfzk4s5-n3w8g';
+
+    // var decoded = jwtDecode(token);
+    // console.log(decoded);
+
   }
 
   getData(){
@@ -94,14 +102,35 @@ export default class InvestmentPlans extends Component {
                   <li className="active">{lang.title2}</li>
                 </ol>
               </div>
-
             </div>
           </div>
         </div>
 
         <div className="row">
-          <div className="col-md-12 row">
-            {plans}
+          <div className="col-md-12">
+            <div className="card">
+              <div className="panel-body">
+                {/* <h4 className="text-center">Packages</h4> */}
+                <div className='table-responsive'>
+
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <td className="text-center">NAME</td>
+                      <td className="text-center">PRICE</td>
+                      <td className="text-center">ROI %</td>
+                      <td className="text-center">PAYOUTS</td>
+                      <td className="text-center">WITHDRAWALS</td>
+                      <td className="text-center"></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {plans}
+                  </tbody>
+                </table>
+                </div>
+              </div>       
+            </div>            
           </div>
         </div>
         <Modal 

@@ -1,6 +1,40 @@
 @charset "UTF-8";
 @import 'https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700';
 
+.withdrawal__container input {
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 0px !important;
+    border-bottom: 1px solid #ec7505
+}
+
+.withdrawal__container .wallet {
+    margin-top: 100px;
+}
+
+.withdrawal__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center !important;
+    /* margin-top: 10px; */
+    margin-bottom: 10px
+}
+
+.extract__title{
+    background-color: orange;
+    min-height: 30px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+.plan__price{
+    font-size: 20px;
+    color: #00a300;
+    font-weight: 600;
+    
+}
 .vault__content{
     color: white !important
 }
@@ -19,6 +53,19 @@
     background: linear-gradient(0deg, rgba(236,117,5,1) 12%, rgba(248,175,5,1) 62%);
 }
 
+.vault__content-4 {
+    background: rgb(236,117,5);
+    background: linear-gradient(0deg, rgba(236,117,5,1) 29%, rgba(248,59,5,1) 62%);
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.vault__content-4 i{
+    color: white;
+    font-size: 60px
+}
 .referrer__container i{
     width: 1%;
 }

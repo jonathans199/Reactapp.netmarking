@@ -61,11 +61,12 @@ class Referral extends Component {
       <BootstrapTable
         data={this.state.rewards}
         options={this.state.options}
-        bordered={true}
+        bordered={false}
         striped={true}
         condensed={true}
         hover={true}
         pagination={true}
+        search
       >
         <TableHeaderColumn
           dataField="id"
@@ -76,29 +77,39 @@ class Referral extends Component {
           width="5%"
           className="textTable textTableSize"
         >
-          #
+          ID
+        </TableHeaderColumn>
+        <TableHeaderColumn
+          dataField="created_at"
+          headerAlign="center"
+          dataAlign="center"
+          className="textTable textTableSize"
+          dataSort={true}
+          
+        >
+          Date
         </TableHeaderColumn>
         <TableHeaderColumn
           dataFormat={(cell, row) => this.valueFormat(cell, row)}
           dataSort={true}
-          headerAlign="left"
-          dataAlign="left"
+          headerAlign="center"
+          dataAlign="center"
           className="textTable textTableSize"
         >
           {lang.value}
         </TableHeaderColumn>
         <TableHeaderColumn
           dataField="reward_type_id"
-          headerAlign="left"
-          dataAlign="left"
+          headerAlign="center"
+          dataAlign="center"
           className="textTable textTableSize"
         >
           {lang.type}
         </TableHeaderColumn>
         <TableHeaderColumn
           dataField="plan_id"
-          headerAlign="left"
-          dataAlign="left"
+          headerAlign="center"
+          dataAlign="center"
           className="textTable textTableSize"
         >
           {lang.planName}
@@ -114,21 +125,13 @@ class Referral extends Component {
         <TableHeaderColumn
           dataField="user_refered"
           dataSort={true}
-          headerAlign="left"
-          dataAlign="left"
+          headerAlign="center"
+          dataAlign="center"
           className="textTable textTableSize"
         >
           {lang.referer}
         </TableHeaderColumn>
-        <TableHeaderColumn
-          dataField="created_at"
-          headerAlign="right"
-          dataAlign="right"
-          className="textTable textTableSize"
-          dataSort={true}
-        >
-          {lang.created}
-        </TableHeaderColumn>
+        
       </BootstrapTable>
     ) : (
       <div className="text-center">

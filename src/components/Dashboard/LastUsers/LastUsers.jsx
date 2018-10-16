@@ -3,6 +3,7 @@ import SweetAlert from "react-bootstrap-sweetalert";
 
 import config from "../../../services/config";
 import lang from "./../../../services/lang";
+import _ from 'lodash'
 
 export default class LastUsers extends Component {
   constructor(props) {
@@ -37,26 +38,40 @@ export default class LastUsers extends Component {
     )
   }
   render() {
+    let flags = ['https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/ar.svg',
+      'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/co.svg',
+      'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/mx.svg',
+      'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/us.svg']
     let users = this.state.users.map((user,index) => {
+      let randomFlag = _.sample(flags)
       return( 
-        <li className="activity-warning" key={index}>
-          <small className="text-muted">{lang.ago} {user.created_at}</small>
-          <p>{user.username} {lang.registered}</p>
-        </li>
+        <tr key={index}>
+          <td><img src={randomFlag} style={{width:50}} alt=""/></td>
+          <td>{user.plan}</td>
+          <td>{user.created_at.split("T")[0]}</td>
+          <td>{user.created_at.split("T")[1].split("-")[0].split(".")[0]}</td>
+        </tr>
       )
     })
     return (
-      <div className="panel panel-bd lobidisable">
-        <div className="panel-heading">
-          <div className="panel-title">
-            <i className="ti-stats-up"></i>
-            <h4>{lang.lastUsers}</h4>
-          </div>
-        </div>
+      <div className="card">
         <div className="panel-body">
-          <ul className="activity-list list-unstyled">
-            {users}
-          </ul>
+          <h4 className="text-center">Last plans on the system</h4>
+          <div className="table-responsive" style={{ marginTop: 40}} >
+            <table className="table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Plan</th>
+                  <th>Date</th>
+                  <th>Hour</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     )

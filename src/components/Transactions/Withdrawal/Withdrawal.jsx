@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { Input, Form, Row, Col, Button } from 'reactstrap'
+import { ToastContainer, toast } from 'react-toastify'
 
 import DashboardWrapper from "../../../containers/DashboardWrapper/DashboardWrapper";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
@@ -12,6 +13,7 @@ import Aux from "../../../hoc/Aux";
 import NotFriday from "../../UI/ErrorViews/NotFriday";
 import PendingWithdrawals from "../../UI/ErrorViews/PendingWithdrawals";
 import lang from "../../../services/lang";
+import Transactions from './../History/Tables/Withdrew';
 import "./styles.css"
 
 class Withdrawal extends Component {
@@ -93,8 +95,11 @@ class Withdrawal extends Component {
             show: true
           })
         } else {
-          this.setState({
-            errors: data.errors
+          data.errors.map((m) => {
+            toast.error(m, {
+              position: toast.POSITION.TOP_RIGHT,
+              className:"text-center"
+            })
           })
         }
       })
@@ -111,55 +116,49 @@ class Withdrawal extends Component {
   render() {
     const date    = this.state.date;
     const pending = this.state.pending;
+    const errors  = [...this.state.errors]
+    const vault   = this.state.vault
     let content
-    let checked
 
-    if (pending) {
-      content = <PendingWithdrawals />
-    } else {
-      const errors  = [...this.state.errors]
-      const vault   = this.state.vault
-      checked       = this.state.is_checked
-      
-      let destiny   = !this.state.bonus ? (
-          <Aux>
-            <div className="form-group col-md-12">
-              <label>{lang.destinyWallet}</label>
-              <Input
-                type="text"
-                className="form-control"
-                name="wallet"
-                onChange={value => this.handleChange(value)}
-                defaultValue={this.state.wallet}
-              />
-            </div>
-          </Aux>
-        ) : (
-          <Form className="form-group col-md-12">
-            <label><code>Username</code> a quien deseas transladar saldo</label>
-            <Input
-              type="text"
-              className="form-control"
-              name="coupon_username"
-              onChange={value => this.handleChange(value)}
-              defaultValue={this.state.coupon_username}
-            />
-            <p>Este tipo de retiro tiene un costo de <code>5%</code> E.g: si retiras 100 USD el destinatario recibirá 95 USD</p>
-          </Form>
-        )
+    let destiny   = !this.state.bonus ? (
+        <Aux>
+          <label>To Wallet</label>
+          <Input
+            type="text"
+            className="form-control"
+            name="wallet"
+            onChange={value => this.handleChange(value)}
+            defaultValue={this.state.wallet}
+          />
+        </Aux>
+      ) : (
+        <Form className="form-group col-md-12">
+          <label><code>Username</code> a quien deseas transladar saldo</label>
+          <Input
+            type="text"
+            className="form-control"
+            name="coupon_username"
+            onChange={value => this.handleChange(value)}
+            defaultValue={this.state.coupon_username}
+          />
+          <p>Este tipo de retiro tiene un costo de <code>5%</code> E.g: si retiras 100 USD el destinatario recibirá 95 USD</p>
+        </Form>
+      )
+
       content = (
         <Aux>
-        <div className="content-header">
+          <ToastContainer />
+          <div className="content-header">
             <div className="breadcrumb-wrapper col-12">
               <div className="header-title flexBox">
                 <div id="title" >
-                  <h1 className="">{lang.title7}</h1>
+                  <h1 className="">Payment Request</h1>
                 </div>
                 <div id="path" >
                   <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><a href="#">Transactions</a>
+                    <li className="breadcrumb-item"><a href="#">Transfers</a>
                     </li>
-                    <li className="active">{lang.title7}</li>
+                    <li className="active">Payment Request</li>
                   </ol>
                 </div>
 
@@ -167,61 +166,29 @@ class Withdrawal extends Component {
             </div>
           </div>
           <Row>
-            <Col xs="12" sm="4">
-              <div className="statistic-box statistic-filled-12">
-                <h2>
-                  <i className="fa fa-dollar" />
-                  <span className="count-number"> {vault.balance_usd}</span>
-                </h2>
-                <div className="small">{lang.balanceIn} USD</div>
-                <div className="sparkline1 text-center" />
-              </div>
-              <div className="statistic-box statistic-filled-12">
-                <h2>
-                  <img src={btc} width="10%" />
-                  <span className="count-number"> {vault.balance_btc}</span>
-                </h2>
-                <div className="small">{lang.balanceIn} BTC</div>
-                <div className="sparkline1 text-center" />
-              </div>
-              <div className="statistic-box statistic-filled-12">
-                <h2>
-                  <img src={ltc} />
-                  <span className="count-number"> {vault.balance_ltc}</span>
-                </h2>
-                <div className="small">{lang.balanceIn} LTC</div>
-                <div className="sparkline1 text-center" />
-              </div>
-            </Col>
-            <Col xs="12" sm="8">
-              <div className="panel panel-bd lobidrag">
-                <div className="panel-heading">
-                  <div className="panel-title">
-                    <h4>
-                      <i className="hvr-buzz-out fa fa-send-o" /> {lang.withdrawForm}
-                    </h4>
-                  </div>
-                </div>
+            <Col xs="12" sm="12">
+              <div className="card">
                 <div className="panel-body">
-                  <div className="form-row">
-                    <Col className="form-group" md="12">
-                      {errors.length > 0
-                        ? errors.map((error, index) => {
-                            return (
-                              <div key={index}>
-                                <code>{error}</code>
-                                <br/>
-                              </div>
-                            )
-                          })
-                        : null}
+                  <h4 className="text-center">
+                    {lang.withdrawForm}
+                  </h4>
+                  <Row className="withdrawal__container">
+                    <Col className="form-group " md="6" xs="12">
+                      <div  className="wallet">
+                        <div className="card vault__content-4">
+                          <div className="panel-body text-left" style={{ width: '70%' }} >
+                            <h3>Available balance</h3>
+                            <h2 className='text-white'>${vault.balance_usd} USD</h2>
+                          </div>
+                          <div>
+                            <i className="la la-suitcase"></i>
+                          </div>
+                        </div>
+                      </div>
                     </Col>
-                  </div>
-                  <div className="form-row">
-                    <Form className="form-group col-md-6">
-                      <label>{lang.amountToWithdraw} USD</label>
-                      <div className="input-group">
-                        <span className="input-group-addon">$</span>
+                    <Col md="6" xs="12" >
+                      <div  className="form">  
+                        <label>Amount to request USD</label>
                         <Input
                           name="value"
                           type="text"
@@ -230,66 +197,46 @@ class Withdrawal extends Component {
                           onChange={value => this.handleChange(value)}
                           defaultValue={this.state.value}
                         />
-                        <span className="input-group-addon">
-                          <b>USD</b>
-                        </span>
+
+                        <small className="text-muted">
+                          {lang.minimumWithdraw} $50 USD
+                        </small>
+
+                        <select
+                          className="form-control form-control-success"
+                          name="currency_id"
+                          onChange={value => this.handleChange(value)}
+                          defaultValue={this.state.currency_id}
+                          style={{ border: "1px solid #5cb85c" }}
+                        >
+                          <option>Crypto to receive</option>
+                          <option value="12">BTC</option>
+                          <option value="13">LTC</option>
+                        </select>
+
+                        {destiny}
+                        
                       </div>
-                      <small className="text-muted">
-                        {lang.minimumWithdraw} $100 USD
-                      </small>
-                    </Form>
-                    <Form className="form-group col-md-6">
-                      <label>{lang.whithdrawType}</label>
-                      <select
-                        className="form-control form-control-success"
-                        name="currency_id"
-                        onChange={value => this.handleChange(value)}
-                        defaultValue={this.state.currency_id}
-                        style={{ border: "1px solid #5cb85c" }}
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md="12" >
+                      <button
+                        type="button"
+                        className="btn btn-primary pull-right btn-block"
+                        onClick={() => this.createWithdrawal()}
                       >
-                        <option>----</option>
-                        <option value="12">BTC</option>
-                        <option value="13">LTC</option>
-                        <option value="14">{lang.sellBalance}</option>
-                      </select>
-                    </Form>
-                  </div>
+                        REQUEST PAYMENT
+                      </button>
+                    </Col>
+                  </Row>
 
-                  <div className="form-row">
-                    {destiny}
-                  </div>
-
-                  <Col md="12">
-                    <div className="form-group">
-                      <label>{lang.notes}</label>
-                      <textarea
-                        className="form-control"
-                        rows="3"
-                        name="comments"
-                        onChange={value => this.handleChange(value)}
-                        defaultValue={this.state.wallet}
-                      />
-                    </div>
-                    <div className="">
-                      <label className="form-check-label">
-                        <Input
-                          type="checkbox"
-                          className="form-check-input"
-                          checked={this.state.is_checked}
-                          onClick={() => this.toggleChange()}
-                        />{" "}
-                        {lang.acceptTerms}
-                      </label>
-                    </div>
-                    <Button
-                      type="button"
-                      className="btn btn-primary pull-right"
-                      disabled={!checked}
-                      onClick={() => this.createWithdrawal()}
-                    >
-                      {lang.request}
-                    </Button>
-                  </Col>
+                  <Row style={{ marginTop: 30}}>
+                    <Col md="12">
+                      <h4 className="text-center">Past payments</h4>
+                      <Transactions/>
+                    </Col>
+                  </Row>
                 </div>
               </div>
             </Col>
@@ -299,9 +246,9 @@ class Withdrawal extends Component {
             title={this.state.message}
             onConfirm={() => this.closeSweet()}
           />
-        </Aux>
-      )
-    }
+      </Aux>
+    )
+
     return <DashboardWrapper>{content}</DashboardWrapper>;
   }
 }

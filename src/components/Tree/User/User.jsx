@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
+import logoMain from './../../../assets/img/inverLogo.png'
+import active from './../../../assets/img/logo_icon.png'
+import direct from './../../../assets/img/direct.png'
 
 
 import "./User.css";
@@ -16,58 +19,36 @@ class User extends Component {
     const bot = this.props.bot
     let colorUserClass = "silver_user";
     let botIconClass = "fa fa-user fa-3x";
-    let planName
+    let username
+    let logo = logoMain
+    
+    const tooltip = (<Tooltip id="tooltip">CREATED: {(this.props.uuid).split("T")[0]}</Tooltip>)
 
-    // if (Object.keys(plan).length !== 0) {
-    //   switch (plan.plan_id) {
-    //     case 1:
-    //       colorUserClass = "silver_user";
-    //       break;
-    //     case 2:
-    //       colorUserClass = "gold_user";
-    //       break;
-    //     case 3:
-    //       colorUserClass = "ruby_user";
-    //       break;
-    //     case 4:
-    //       colorUserClass = "sapphire_user";
-    //       break;
-    //     case 5:
-    //       colorUserClass = "emerald_user";
-    //       break;
-    //     case 6:
-    //       colorUserClass = "diamond_user";
-    //       break;
-    //   }
-    //   planName = plan.plan_name + ", " + plan.plan_value;
-    // } else {
-    //   colorUserClass = "bronze_user";
-    //   planName = "No plans";
-    // }
-
-    const tooltip = (
-      <Tooltip id="tooltip">
-        <p>{this.props.leftPoints + " / " + this.props.rightPoints}</p>
-        <p>{"Plan: " + planName}</p>
-      </Tooltip>
-    )
+    // if (username === 'No User') logo = active
+    if (this.props.username.split("-").length > 1) {
+      username = this.props.username.split("-")[1]
+      logo = direct
+    } else if(this.props.username.split("-").length === 1 && this.props.username === "No User") {
+      logo = logoMain
+      username = this.props.username.split("-")[0]
+    } else {
+      logo = active
+      username = this.props.username.split("-")[0]
+    }
 
     return (
       <OverlayTrigger 
         placement={this.props.placement}
         overlay={tooltip}
-        onClick={this.props.clicked}
         >
         <a
           href="javascript:void(0)"
-          className={colorUserClass}
-          onClick={this.props.clicked}
           value={this.props.uuid}
         >
-          <p className="smallText">
-            <strong>{this.props.username}</strong>
+          <img className="icon-logo" src={logo} alt=""/>
+          <p className="smallText tree__container">
+            {username}
           </p>
-          <i className={botIconClass} />
         </a>
       </OverlayTrigger>
     );

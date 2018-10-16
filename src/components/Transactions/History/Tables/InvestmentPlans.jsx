@@ -65,22 +65,32 @@ class Investments extends Component {
       <BootstrapTable
         data={this.state.rewards}
         options={this.state.options}
-        bordered={true}
+        bordered={false}
         striped={true}
         condensed={true}
         hover={true}
         pagination={true}
+        search
       >
         <TableHeaderColumn
           dataField="id"
           dataFormat={this.indexN}
           isKey={true}
-          headerAlign="center"
-          dataAlign="center"
+          headerAlign="left"
+          dataAlign="left"
           width="5%"
           className="textTable textTableSize"
         >
-          #
+          ID
+        </TableHeaderColumn>
+        <TableHeaderColumn
+          dataField="created_at"
+          headerAlign="left"
+          dataSort={true}
+          dataAlign="left"
+          className="textTable textTableSize"
+        >
+          Date
         </TableHeaderColumn>
         <TableHeaderColumn
           dataFormat={(cell, row) => this.valueFormat(cell, row)}
@@ -92,37 +102,20 @@ class Investments extends Component {
           {lang.value}
         </TableHeaderColumn>
         <TableHeaderColumn
-          dataField="reward_type_id"
-          headerAlign="left"
-          dataAlign="left"
-          className="textTable textTableSize"
-        >
-          {lang.type}
-        </TableHeaderColumn>
-        <TableHeaderColumn
           dataField="plan_id"
           headerAlign="left"
           dataAlign="left"
           className="textTable textTableSize"
         >
-          {lang.planName}
+          Description
         </TableHeaderColumn>
         <TableHeaderColumn
           dataFormat={(cell, row) => this.rewardStatus(cell, row)}
-          headerAlign="center"
-          dataAlign="center"
+          headerAlign="left"
+          dataAlign="left"
           className="textTable textTableSize"
         >
           {lang.status}
-        </TableHeaderColumn>
-        <TableHeaderColumn
-          dataField="created_at"
-          headerAlign="right"
-          dataSort={true}
-          dataAlign="right"
-          className="textTable textTableSize"
-        >
-          {lang.created}
         </TableHeaderColumn>
       </BootstrapTable>
     ) : (
@@ -141,7 +134,7 @@ class Investments extends Component {
     return (
       <div className="panel">
         <div className="panel-body">
-          <div className="form-group row">
+          {/* <div className="form-group row">
             <label className="col-lg-6 col-sm-12 col-form-label">
               {lang.investmentPlanFilter}
             </label>
@@ -155,7 +148,7 @@ class Investments extends Component {
                 {investments}
               </select>
             </div>
-          </div>
+          </div> */}
           {table}
         </div>
       </div>

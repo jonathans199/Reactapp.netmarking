@@ -13,7 +13,7 @@ const dashboardWrapper = props => {
         </div>
         
       </div>
-      <footer class="footer">
+      <footer className="footer">
         © 2018 Backoffice Pro by NetMarketCap
       </footer>
     </div>

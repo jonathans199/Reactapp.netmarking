@@ -32,7 +32,7 @@ export default class MyInvoices extends Component {
     let name  = row.currency_id == 'BTC' ? ('BITCOIN') : ('LITECOIN')
       if (row.currency_id == "USD") name  = 'DOLAR'
       if (row.currency_id == "USD") pic   = <img src={usdt} />
-    return(<span>{pic} {name}</span>)
+    return(<span>{name}</span>)
   }
 
   getData() {
@@ -59,11 +59,11 @@ export default class MyInvoices extends Component {
   invoiceStatus(cell,row){
     let status
     if (row.invoice_status_code == 13)
-      status = (<div className='text-danger'>{row.invoice_status_id}</div>)
+      status = (<div className='label label-pill label-danger m-r-15'>CANCELED</div>)
     else if (row.invoice_status_code == 12){
-      status = (<div className='text-success'>{row.invoice_status_id}</div>)
+      status = (<div className='label label-pill label-success m-r-15'>COMPLETE</div>)
     } else{
-      status = (<div className='text-warning'>{row.invoice_status_id}</div>)
+      status = (<div className='label label-pill label-warning m-r-15'>AWAITING PAYMENT</div>)
     }
     return status
   }
@@ -94,18 +94,13 @@ export default class MyInvoices extends Component {
                     <li className="active">{lang.title6}</li>
                   </ol>
                 </div>
-
               </div>
             </div>
           </div>
         <div className="row">
-          <div className="panel panel-bd lobidrag">
-            <div className="panel-heading">
-              <div className="panel-title">
-                <h4>{lang.invoicesList}</h4>
-              </div>
-            </div>
+          <div className="card">
             <div className="panel-body">
+              <h4 className="text-center">ORDERS GENERATED IN YOUR ACCOUNT</h4>
               <BootstrapTable
                 data={this.state.myInvoices}
                 options={this.state.options}
@@ -125,7 +120,15 @@ export default class MyInvoices extends Component {
                   dataAlign="center"
                   className="textTable textTableSize"
                 >
-                  #
+                  ID
+                </TableHeaderColumn>
+                <TableHeaderColumn
+                  dataField="created_at"
+                  headerAlign="center"
+                  dataAlign="center"
+                  className="textTable textTableSize"
+                >
+                  Date
                 </TableHeaderColumn>
                 <TableHeaderColumn
                   dataField="plan_id"
@@ -134,7 +137,7 @@ export default class MyInvoices extends Component {
                   width="15%"
                   className="textTable textTableSize"
                 >
-                  {lang.planName}
+                  Pack
                 </TableHeaderColumn>
                 <TableHeaderColumn
                   dataField="total"
@@ -143,7 +146,7 @@ export default class MyInvoices extends Component {
                   dataAlign="center"
                   className="textTable textTableSize"
                 >
-                  {lang.value}
+                  Price
                 </TableHeaderColumn>
                 <TableHeaderColumn
                   dataFormat={(cell,row) => this.setCurrency(cell,row)}
@@ -163,21 +166,14 @@ export default class MyInvoices extends Component {
                 >
                   {lang.status}
                 </TableHeaderColumn>
-                <TableHeaderColumn
-                  dataField="created_at"
-                  headerAlign="center"
-                  dataAlign="center"
-                  className="textTable textTableSize"
-                >
-                  {lang.created}
-                </TableHeaderColumn>
-                <TableHeaderColumn
+                
+                {/* <TableHeaderColumn
                   dataFormat={(cell,row) => this.showDetails(cell,row)}
                   headerAlign="center"
                   dataAlign="center"
                   className="textTable textTableSize"
                 >
-                </TableHeaderColumn>
+                </TableHeaderColumn> */}
               </BootstrapTable>
             </div>
           </div>

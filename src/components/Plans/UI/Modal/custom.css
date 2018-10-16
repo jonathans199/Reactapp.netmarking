@@ -4,15 +4,15 @@
     align-items: center;
 }
 
-.payment-container:hover {
-  background: #dddfe6;
-  -webkit-transform: scale(1.07);
-  -ms-transform: scale(1.07);
-  transform: scale(1.07);
-  cursor: pointer;
+.modal__body-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .payment-container {
-  /*margin-right: 1px*/
+    cursor: pointer;
+    border: 2px dotted;
 }
 .payment-methods {
   width: 85px;

@@ -65,6 +65,7 @@ export default class Dashboard extends Component {
           </div>
           <div className="col-sm-12 col-md-8">
             <RewardCharts />
+            <LastUsers />
             {/* <MarketCap /> */}
           </div>
           <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4">

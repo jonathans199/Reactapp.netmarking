@@ -103,24 +103,24 @@ class MySubscriptions extends Component {
     return (
       <DashboardWrapper>
        <div className="content-header">
-            <div className="breadcrumb-wrapper col-12">
-              <div className="header-title flexBox">
-                <div id="title" >
-                  <h1 className="">{lang.title5}</h1>
-                </div>
-                <div id="path" >
-                  <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><a href="#">Settings</a>
-                    </li>
-                    <li className="active">{lang.title5}</li>
-                  </ol>
-                </div>
-
+          <div className="breadcrumb-wrapper col-12">
+            <div className="header-title flexBox">
+              <div id="title" >
+                <h1 className="">My Packages</h1>
               </div>
+              <div id="path" >
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item"><a href="#">Settings</a>
+                  </li>
+                  <li className="active">{lang.title5}</li>
+                </ol>
+              </div>
+
             </div>
           </div>
-        <div className="row">
-          <div className="panel panel-bd lobidrag">
+        </div>
+        <div className="row col-md-12">
+          <div className="card">
             <div className="panel-heading">
               <div className="panel-title">
                 <h4>{lang.subsList}</h4>
@@ -129,11 +129,12 @@ class MySubscriptions extends Component {
             <div className="panel-body">
               <BootstrapTable
                 data={this.state.subscriptions}
-                bordered={true}
+                bordered={false}
                 striped={true}
                 condensed={true}
                 hover={true}
                 pagination={true}
+                search
               >
                 <TableHeaderColumn
                   width="5%"

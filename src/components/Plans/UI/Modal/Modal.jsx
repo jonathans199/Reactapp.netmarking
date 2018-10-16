@@ -76,12 +76,12 @@ export default class Modal extends Component {
     if (this.state.step == 1){
       modalContent = (
         <Row className="col-md-12">
-          <div onClick={() => this.createInvoice(12)} className="card bg-light card-body mb-3 col-md-6 col-xs-12 text-center payment-container">
+          <div onClick={() => this.createInvoice(12)} className="card bg-light card-body mb-3 col-md-12 col-xs-12 text-center payment-container">
             <img src={btc} className="payment-methods img-responsive center-block" />
             <br/>
             <h4>BITCOIN</h4>
           </div>
-          <div onClick={() => this.createInvoice(13)} className="card bg-light card-body mb-3 col-md-6 col-xs-12 text-center payment-container">
+          <div onClick={() => this.createInvoice(13)} className="card bg-light card-body mb-3 col-md-12 col-xs-12 text-center payment-container">
             <img src={ltc} className="payment-methods img-responsive center-block" />
             <br/>
             <h4>LITECOIN</h4>
@@ -98,13 +98,11 @@ export default class Modal extends Component {
       modalContent = (
         <Form>
           <div className="form-group center-block text-center">
-            <small>{lang.qty}</small>
-            <br/>
-            <small>{lang.fees}: {invoice.fees} {counText}</small>
-            <h3>{lang.total}: {invoice.total} {counText}</h3>
+            <h3>TOTAL TO PAY: {invoice.total} {counText}</h3>
             {qrcode}
           </div>
-          <div className="form-group input-group">
+          <div >
+            <small>WALLET</small>
             <Input 
               key={invoice.wallet ? "notLoadedYet" : "loaded"}
               type="text"
@@ -113,9 +111,6 @@ export default class Modal extends Component {
               autoFocus
               disabled
               />
-            <span className="input-group-btn">
-              <button className="btn btn-default" type="button">{coinSymbol}</button>
-            </span>
           </div>
         </Form>
       )
@@ -155,23 +150,18 @@ export default class Modal extends Component {
         <ToastContainer />
         <div className="modal-dialog">
           <div className='modal-content'>
-            <div className="modal-header">
-              <h4 className="js-title-step">
-                <span className="label label-pill label-success">{" "}{this.state.step}</span> 
-                {this.state.title}
-              </h4>
-            </div>
-            <div className="modal-body center">
+            <div className="modal-body modal__body-content">
+              <h4 className="text-center">CRYPTO PAYMENT</h4>
               {modalContent}
             </div>
             <div className="modal-footer">
-              <Button 
+              <button 
                 onClick={() => this.setState(initState)}
-                className="btn btn-primary btn-outline " 
+                className="btn btn-warning btn-block " 
                 data-dismiss="modal"
                 >
-                <i className="fa fa-times" /> {lang.close}
-              </Button>
+                <i className="fa fa-exchange" aria-hidden="true"></i> BACK
+              </button>
             </div>
           </div>
         </div>
