@@ -33,7 +33,8 @@ class User extends Component {
       username = this.props.username.split("-")[0]
     } else {
       logo = active
-      username = this.props.username.split("-")[0]
+      username = ''
+      if(this.props.username.split("-")[0] === JSON.parse(localStorage.getItem('user_data'))['username']) username = this.props.username.split("-")[0]
     }
 
     return (

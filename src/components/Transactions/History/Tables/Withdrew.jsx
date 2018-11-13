@@ -65,9 +65,9 @@ class Withdrew extends Component {
 
   setStatus(cell, row) {
     let status
-    if (row.withdawal_status_id == 13)
+    if (row.withdrawal_status_id === "Cancelled")
       status = (<div className='label label-pill label-danger m-r-15'>CANCELED</div>)
-    else if (row.withdawal_status_id == 12){
+    else if (row.withdrawal_status_id === "Paid"){
       status = (<div className='label label-pill label-success m-r-15'>COMPLETE</div>)
     } else{
       status = (<div className='label label-pill label-warning m-r-15'>AWAITING PAYMENT</div>)
@@ -76,7 +76,7 @@ class Withdrew extends Component {
   }
 
   setWallet(cell,row){
-    return(<Input value={row.txid} className="form-control" readOnly />)
+    return(<Input value={row.wallet} className="form-control" readOnly />)
   }
 
   render() {
@@ -164,7 +164,6 @@ class Withdrew extends Component {
     )
     return (
       <div>
-        
         {table}
       </div>
     )

@@ -38,10 +38,22 @@ export default class LastUsers extends Component {
     )
   }
   render() {
-    let flags = ['https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/ar.svg',
+    let flags = ['https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/us.svg',
       'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/co.svg',
+      'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/fr.svg',
+      'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/ca.svg',
+      'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/es.svg',
+      'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/ar.svg',
       'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/mx.svg',
-      'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/us.svg']
+      'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/au.svg',
+      'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/it.svg',
+      'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/be.svg',
+      'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/ru.svg',
+      'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/br.svg',
+      'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/ch.svg',
+      'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/cn.svg',
+      'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/eg.svg',
+      'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/flags/1x1/de.svg']
     let users = this.state.users.map((user,index) => {
       let randomFlag = _.sample(flags)
       return( 

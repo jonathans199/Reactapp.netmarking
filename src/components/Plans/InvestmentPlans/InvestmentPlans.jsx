@@ -7,8 +7,6 @@ import PlansPanel from "./UI/PlansPanel";
 import Modal from "../UI/Modal/Modal";
 import lang from "./../../../services/lang";
 import SweetAlert from 'react-bootstrap-sweetalert'
-var jwtDecode = require('jwt-decode');
-
 
 export default class InvestmentPlans extends Component {
   constructor(props) {

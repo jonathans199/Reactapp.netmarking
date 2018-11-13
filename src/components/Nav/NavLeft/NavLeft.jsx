@@ -31,14 +31,14 @@ class NavLeft extends Component {
     let urlScrapp   = window.location.hash.split("/")
 
     // parent classes
-    let parentDash    = urlScrapp[1]      == "dashboard" ? "active" : "no";
-    let parentPack  = urlScrapp[1]      == "packages" ? "active" : "no";
-    let parentMatrix  = urlScrapp[1]      == "matrix" ? "active" : "no";
-    let parentPay  = urlScrapp[1]   == "pay-outs" ? "active" : "no";
-    let parentStatus = urlScrapp[1]      == "status" ? "active" : "no";
-    let parentTransfer  = urlScrapp[1]      == "transfers" ? "active" : "no";
+    let parentDash    = urlScrapp[1]      === "dashboard" ? "active" : "no";
+    let parentPack  = urlScrapp[1]      === "packages" ? "active" : "no";
+    let parentMatrix  = urlScrapp[1]      === "matrix" ? "active" : "no";
+    let parentPay  = urlScrapp[1]   === "pay-outs" ? "active" : "no";
+    let parentStatus = urlScrapp[1]      === "status" ? "active" : "no";
+    let parentTransfer  = urlScrapp[1]      === "transfers" ? "active" : "no";
 
-    if (urlScrapp[1] == "dashboard?m=1") parentDash = "active"
+    if (urlScrapp[1] === "dashboard?m=1") parentDash = "active"
       
     let content
 

@@ -51,6 +51,7 @@ class MySubscriptions extends Component {
   }
 
   expiration(cell, row) {
+    let current =  row.used_percent.toFixed(3)
     return (
       <div>
         <br/>
@@ -60,12 +61,12 @@ class MySubscriptions extends Component {
               "progress-bar progress-bar-primary progress-bar-striped active"
             }
             role="progressbar"
-            aria-valuenow={row.used_percent}
+            aria-valuenow={current}
             aria-valuemin="0"
             aria-valuemax="100"
-            style={{ width: row.used_percent + "%" }}
+            style={{ width: current + "%" }}
           >
-            {row.used_percent}%
+            {current}%
           </div>
         </div>
       </div>

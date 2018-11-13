@@ -9,6 +9,7 @@ import ReferalLinks from "./ReferalLinks/ReferalLinks"
 import LastUsers from "./LastUsers/LastUsers"
 import MarketCap from "./MarketCap/MarketCap"
 import UserVault from "./UserVault/UserVault"
+import ChartDonut from './Charts/Donut'
 import config from "./../../services/config"
 import lang from "./../../services/lang"
 
@@ -70,7 +71,7 @@ export default class Dashboard extends Component {
           </div>
           <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             <UserVault />
-            {/* <LastUsers /> */}
+            <ChartDonut/>
           </div>
         </div>
       </DashboardWrapper>

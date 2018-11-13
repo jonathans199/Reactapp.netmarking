@@ -99,9 +99,10 @@ export default class Modal extends Component {
         <Form>
           <div className="form-group center-block text-center">
             <h3>TOTAL TO PAY: {invoice.total} {counText}</h3>
+            <p>Fees: {invoice.fees}</p>
             {qrcode}
           </div>
-          <div >
+          <div>
             <small>WALLET</small>
             <Input 
               key={invoice.wallet ? "notLoadedYet" : "loaded"}

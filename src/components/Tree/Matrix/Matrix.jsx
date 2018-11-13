@@ -23,7 +23,7 @@ class Matrix extends Component {
   generateTreeArray(arry) {
     let total = 15
     arry = arry.map((user) => {
-      return [user.created_at, user.username] 
+      return [user.created_at, user.username]
     })
     if (arry.length < total) {
       Array(total - arry.length).fill().map(()=>{ arry.push(['No User','No User'])})

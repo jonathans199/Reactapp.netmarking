@@ -7,9 +7,9 @@ import DashboardWrapper from "../../../containers/DashboardWrapper/DashboardWrap
 import "./AccountSettings.css";
 import config from "../../../services/config";
 import lang from "../../../services/lang";
-import Img from "./UI/Img";
 
 export default class AccountSettings extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -65,7 +65,9 @@ export default class AccountSettings extends Component {
         address: this.state.address,
         phone: this.state.phone,
         about: this.state.about,
-        avatar: this.state.avatarUpdated ? (this.state.imagePreviewUrl) : ('')
+        avatar: this.state.avatarUpdated ? (this.state.imagePreviewUrl) : (''),
+        btc_wallet: this.state.btcWallet,
+        ltc_wallet: this.state.ltcWallet
       })
     }).then(response =>
       response.json().then(data => {
@@ -76,6 +78,7 @@ export default class AccountSettings extends Component {
             className:"text-center"
           })
           this.setState({ loading: false })
+          localStorage.setItem('user_data', JSON.stringify(data))
         }
       })
     );
@@ -126,7 +129,7 @@ export default class AccountSettings extends Component {
   render() {
     let button  = this.state.loading ? (
         <Button
-          className="btn btn-primary btn-rounded w-md m-b-5"
+          className="btn btn-primary btn-block w-md m-b-5"
           type="button"
           disabled
         >
@@ -134,7 +137,7 @@ export default class AccountSettings extends Component {
         </Button> 
       ) : (
         <Button
-          className="btn btn-primary btn-rounded w-md m-b-5"
+          className="btn btn-primary btn-block w-md m-b-5"
           type="button"
           onClick={() => this.updateUserData()}
         >
@@ -176,196 +179,155 @@ export default class AccountSettings extends Component {
       <DashboardWrapper>
         <ToastContainer />
         <div className="content-header">
-            <div className="breadcrumb-wrapper col-12">
-              <div className="header-title flexBox">
-                <div id="title" >
-                  <h1 className="">{lang.title4}</h1>
-                </div>
-                <div id="path" >
-                  <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><a href="#">Settings</a>
-                    </li>
-                    <li className="active">{lang.title4}</li>
-                  </ol>
-                </div>
-
+          <div className="breadcrumb-wrapper col-12">
+            <div className="header-title flexBox">
+              <div id="title" >
+                <h1 className="">{lang.title4}</h1>
               </div>
+              <div id="path" >
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item"><a href="#">Settings</a>
+                  </li>
+                  <li className="active">{lang.title4}</li>
+                </ol>
+              </div>
+
             </div>
           </div>
+        </div>
 
         <div className="row">
-          <div className="panel panel-bd lobidrag">
-            <div className="panel-heading">
-              <div className="panel-title">
-                <h4>{lang.subtitle4}</h4>
+          <div className="col-md-6">
+            <div className="card">
+              <div className="panel-body">
+                <h4 className="text-center">{lang.subtitle4}</h4>
+                <div className="form-group row">
+                  <label className="col-md-12 ">
+                    {lang.name}
+                  </label>
+                  <div className="col-md-12">
+                    <input
+                      key={this.state.userData.name ? "notLoadedYet" : "Loaded"}
+                      className="form-control "
+                      type="text"
+                      id="name"
+                      defaultValue={this.state.userData.name}
+                      name="name"
+                      onChange={value => this.handleChange(value)}
+                    />
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <label htmlFor="lastName" className="col-md-12">
+                    {lang.lastName}
+                  </label>
+                  <div className="col-md-12">
+                    <input
+                      key={
+                        this.state.userData.last_name ? "notLoadedYet" : "Loaded"
+                      }
+                      className="form-control"
+                      type="text"
+                      id="lastName"
+                      defaultValue={this.state.userData.last_name}
+                      name="last_name"
+                      onChange={value => this.handleChange(value)}
+                    />
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <label htmlFor="email" className="col-md-12">
+                    {lang.email}
+                  </label>
+                  <div className="col-md-12">
+                    <input
+                      key={this.state.userData.email ? "notLoadedYet" : "Loaded"}
+                      className="form-control"
+                      type="email"
+                      defaultValue={this.state.userData.email}
+                      name="email"
+                      onChange={value => this.handleChange(value)}
+                    />
+                  </div>
+                </div>
+                <hr/>
+                <div className="form-group row">
+                  <label htmlFor="btcWallet" className="col-md-12">
+                    BTC Wallet
+                  </label>
+                  <div className="col-md-12">
+                    <input
+                      key={this.state.userData.btc_wallet ? "notLoadedYet" : "Loaded"}
+                      className="form-control btc-input"
+                      type="btc_wallet"
+                      defaultValue={this.state.userData.btc_wallet}
+                      name="btcWallet"
+                      onChange={value => this.handleChange(value)}
+                    />
+                  </div>
+                </div>
+                
+                <div className="form-group row">
+                  <label htmlFor="ltcWallet" className="col-md-12">
+                    LTC Wallet
+                  </label>
+                  <div className="col-md-12">
+                    <input
+                      key={this.state.userData.ltc_wallet ? "notLoadedYet" : "Loaded"}
+                      className="form-control ltc-input"
+                      type="ltc_wallet"
+                      defaultValue={this.state.userData.ltc_wallet}
+                      name="ltc_wallet"
+                      onChange={value => this.handleChange(value)}
+                    />
+                  </div>
+                </div>
+
+              </div>
+              <div className="panel-footer text-right">
+                {button}
               </div>
             </div>
-            <div className="panel-body">
-              <div className="form-group row">
-                <label className="col-sm-3 col-form-label" />
-                <div className="col-sm-9">
-                  <div className="inbox-avatar">
-                    <img
-                      src={this.state.imagePreviewUrl}
-                      className="img-circle border-bk "
+            </div>
+            <div className="col-md-6">
+            <div className="card">
+              <div className="panel-body">
+                <h4 className="text-center">Password Update</h4>
+                <div className="form-group row">
+                  <Label htmlFor="password" className="col-md-12">
+                    {lang.newPassword}
+                  </Label>
+                  <div className="col-md-12">
+                    <input
+                      id="password"
+                      className="form-control"
+                      type="password"
+                      name="password"
+                      onChange={value => this.handleChange(value)}
                     />
-                    <div className="inbox-avatar-text hidden-xs hidden-sm">
-                      <div className="avatar-name">
-                        <small>{lang.username}:</small> {this.state.userData.username}
-                      </div>
-                      <div>
-                        <input
-                          type="file"
-                          className="filestyle"
-                          onChange={e => this._handleImageChange(e)}
-                          style={{
-                            marginLeft: "-16px",
-                            position: "absolute",
-                            clip: "rect(0px 0px 0px 0px)"
-                          }}
-                          id="filestyle-0"
-                          tabIndex="-1"
-                        />
-                        <label
-                          htmlFor="filestyle-0"
-                          className="btn btn-xs  btn-primary "
-                        >
-                          <i className="fa fa-camera" />
-                          <span className="buttonText"> {lang.changeAvatar}</span>
-                        </label>
-                      </div>
-                    </div>
+                    <br/>
+                  <Label htmlFor="password" className="col-md-12">
+                    Password confirmation
+                  </Label>
+                    <input
+                      id="password_confirmation"
+                      className="form-control"
+                      type="password"
+                      name="password_confirmation"
+                      onChange={value => this.handleChange(value)}
+                    />
                   </div>
                 </div>
               </div>
-              <div className="form-group row">
-                <label className="col-sm-3 col-form-label">{lang.linkToRefer}</label>
-                <div className="col-sm-9">
-                  <p className="form-control-static">
-                    <strong>
-                      <code>
-                        {config.defaultDomain}/#/register?reffer={
-                          this.state.userData.uuid
-                        }
-                      </code>
-                    </strong>
-                  </p>
-                </div>
-              </div>
-              <div className="form-group row">
-                <label htmlFor="name" className="col-sm-3 col-form-label">
-                  {lang.name}
-                </label>
-                <div className="col-sm-9">
-                  <input
-                    key={this.state.userData.name ? "notLoadedYet" : "Loaded"}
-                    className="form-control"
-                    type="text"
-                    id="name"
-                    defaultValue={this.state.userData.name}
-                    name="name"
-                    onChange={value => this.handleChange(value)}
-                  />
-                </div>
-              </div>
-              <div className="form-group row">
-                <label htmlFor="lastName" className="col-sm-3 col-form-label">
-                  {lang.lastName}
-                </label>
-                <div className="col-sm-9">
-                  <input
-                    key={
-                      this.state.userData.last_name ? "notLoadedYet" : "Loaded"
-                    }
-                    className="form-control"
-                    type="text"
-                    id="lastName"
-                    defaultValue={this.state.userData.last_name}
-                    name="last_name"
-                    onChange={value => this.handleChange(value)}
-                  />
-                </div>
-              </div>
-              <div className="form-group row">
-                <label htmlFor="email" className="col-sm-3 col-form-label">
-                  {lang.email}
-                </label>
-                <div className="col-sm-9">
-                  <input
-                    key={this.state.userData.email ? "notLoadedYet" : "Loaded"}
-                    className="form-control"
-                    type="email"
-                    id="email"
-                    defaultValue={this.state.userData.email}
-                    name="email"
-                    onChange={value => this.handleChange(value)}
-                  />
-                </div>
-              </div>
-              <div className="form-group row">
-                <Label htmlFor="leg" className="col-sm-3 col-form-label">
-                  {lang.activeLeg}
-                </Label>
-                <div className="col-sm-9">{userLeg}</div>
-              </div>
-              <div className="form-group row">
-                <label
-                  htmlFor="example-date-input"
-                  className="col-sm-3 col-form-label"
+              <div className="panel-footer text-right">
+                <Button
+                  className="btn btn-primary btn-block w-md m-b-5"
+                  type="button"
+                  onClick={() => this.updateUserPassword()}
                 >
-                  {lang.affiliated}
-                </label>
-                <div className="col-sm-9">
-                  <p className="form-control-static">
-                    <strong>{this.state.userData.created_at}</strong>
-                  </p>
-                </div>
+                  {lang.changePassword}
+                </Button>
               </div>
-            </div>
-            <div className="panel-footer text-right">
-              {button}
-            </div>
-          </div>
-
-          <div className="panel panel-bd lobidrag">
-            <div className="panel-heading">
-              <div className="panel-title">
-                <h4>{lang.passwordChange}</h4>
-              </div>
-            </div>
-            <div className="panel-body">
-              <div className="form-group row">
-                <Label htmlFor="password" className="col-sm-3 col-form-label">
-                  {lang.newPassword}
-                </Label>
-                <div className="col-sm-9">
-                  <input
-                    id="password"
-                    className="form-control"
-                    type="password"
-                    name="password"
-                    onChange={value => this.handleChange(value)}
-                  />
-                  <br/>
-                  <input
-                    id="password_confirmation"
-                    className="form-control"
-                    type="password"
-                    name="password_confirmation"
-                    onChange={value => this.handleChange(value)}
-                  />
-                  <span className="help-block">{lang.newPasswordConfirm}</span>
-                </div>
-              </div>
-            </div>
-            <div className="panel-footer text-right">
-              <Button
-                className="btn btn-primary btn-rounded w-md m-b-5"
-                type="button"
-                onClick={() => this.updateUserPassword()}
-              >
-                {lang.changePassword}
-              </Button>
             </div>
           </div>
         </div>
