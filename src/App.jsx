@@ -8,6 +8,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import InvestmentPlans from "./components/Plans/InvestmentPlans/InvestmentPlans";
 import AccountSettings from "./components/Profile/AccountSettings/AccountSettings";
 import MyInvoices from "./components/Profile/MyInvoices/MyInvoices";
+import Support from "./components/Support/Support";
 import MySubscriptions from "./components/Profile/MySubscriptions/MySubscriptions";
 import Withdrawal from "./components/Transactions/Withdrawal/Withdrawal";
 import Binary from "./components/Tree/Tree";
@@ -43,6 +44,7 @@ class App extends Component {
           <Route exact path="/matrix" component={Binary} />
           <Route exact path="/referrers" component={Referrers} />
           <Route exact path="/inactive" component={UserInactive} />
+          <Route exact path="/support" component={Support}/>
           <Route component={Login} />
         </Switch>
       </HashRouter>

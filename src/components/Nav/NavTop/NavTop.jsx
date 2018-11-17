@@ -109,6 +109,7 @@ class NavTop extends Component {
                   <li><Link to="/profile/settings"><i className="ti-user"></i>&nbsp; Profile</Link></li>
                   <li className="divider" />
                   <li><Link to="/profile/invoices"><i className="ti-direction-alt"></i>&nbsp; Invoices</Link></li>
+                  <li><Link to="/support"><i className="ti-settings"></i>&nbsp; Support</Link></li>
                 </ul>
                 
               </li>
